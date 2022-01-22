@@ -1,0 +1,162 @@
+// SPDX-FileCopyrightText: © 2024 Sebastian Davids <sdavids@gmx.de>
+// SPDX-License-Identifier: Apache-2.0
+= sdavids-docker-healthcheck
+Sebastian Davids <sdavids@gmx.de>
+// Metadata:
+:description: Docker health checks
+// Settings:
+:sectnums:
+:sectanchors:
+:sectlinks:
+:toc: macro
+:toclevels: 3
+:toc-placement!:
+:hide-uri-scheme:
+:source-highlighter: rouge
+:rouge-style: github
+// Refs:
+:docker-install-url: https://docs.docker.com/install/
+:hadolint-install-url: https://github.com/hadolint/hadolint?tab=readme-ov-file#install
+:uri-apache-license: https://www.apache.org/licenses/LICENSE-2.0
+:uri-contributor-covenant: https://www.contributor-covenant.org
+:uri-google-style: https://github.com/google/gts
+
+ifdef::env-browser[:outfilesuffix: .adoc]
+
+ifdef::env-github[]
+:outfilesuffix: .adoc
+:badges:
+endif::[]
+
+ifdef::badges[]
+image:https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg[Contributor Covenant,Version 2.1,link={uri-contributor-covenant}]
+image:https://img.shields.io/badge/code%20style-google-blueviolet.svg[Code Style: Google,link={uri-google-style}]
+image:https://img.shields.io/osslifecycle/sdavids/sdavids-docker-healthcheck[OSS Lifecycle]
+image:https://img.shields.io/maintenance/yes/2024[Maintenance]
+image:https://img.shields.io/github/last-commit/sdavids/sdavids-docker-healthcheck[GitHub last commit]
+endif::[]
+
+toc::[]
+
+Available Docker health checks:
+
+== License
+
+Apache License, Version 2.0 (link:LICENSES/Apache-2.0.txt[Apache-2.0.txt] or {uri-apache-license}).
+
+== Contribution
+
+See link:CONTRIBUTING{outfilesuffix}[].
+
+== Code of Conduct
+
+We abide by the {uri-contributor-covenant}[Contributor Covenant, Version 2.1] and ask that you do as well.
+
+For more information, please see link:CODE_OF_CONDUCT.md[Code of Conduct].
+
+== Development
+
+=== Format Source Code
+
+[source,shell]
+----
+$ scripts/format.sh
+----
+
+=== Lint Source Code
+
+[source,shell]
+----
+$ scripts/lint.sh
+----
+
+== Development Environment Setup
+
+[IMPORTANT]
+====
+After initializing this repository you need to install the Git hooks via:
+
+[source,shell]
+----
+$ git config core.hooksPath .githooks
+----
+
+And configure the https://git-scm.com/docs/git-config#Documentation/git-config.txt-blameignoreRevsFile[ignore-revs-file]:
+
+[source,shell]
+----
+git config blame.ignoreRevsFile .git-blame-ignore-revs
+----
+====
+
+=== Installation
+
+==== Docker
+
+Install {docker-install-url}[Docker].
+
+==== hadolint
+
+===== Linux
+
+Install {hadolint-install-url}[hadolint].
+
+===== Mac
+
+[source,shell]
+----
+$ brew install hadolint
+----
+
+==== shellcheck
+
+===== Linux
+
+[source,shell]
+----
+$ sudo apt-get install shellcheck
+----
+
+===== Mac
+
+[source,shell]
+----
+$ brew install shellcheck
+----
+
+==== shfmt
+
+===== Linux
+
+[source,shell]
+----
+$ sudo apt-get install shfmt
+----
+
+===== Mac
+
+[source,shell]
+----
+$ brew install shfmt
+----
+
+==== yamllint
+
+===== Linux
+
+[source,shell]
+----
+$ sudo apt-get install yamllint
+----
+
+===== Mac
+
+[source,shell]
+----
+$ brew install yamllint
+----
+
+[#ide]
+=== IDE
+
+See link:CODING_STYLE.adoc#ide-configuration[IDE Configuration].

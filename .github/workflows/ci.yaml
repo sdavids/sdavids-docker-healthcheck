@@ -13,6 +13,8 @@ on: # yamllint disable-line rule:truthy
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+env:
+  CARGO_INCREMENTAL: 0
 permissions: { }
 jobs:
   # unfortunately each job is billed for at least 1 minute in GH Actions

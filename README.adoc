@@ -17,6 +17,7 @@ Sebastian Davids <sdavids@gmx.de>
 // Refs:
 :docker-install-url: https://docs.docker.com/install/
 :hadolint-install-url: https://github.com/hadolint/hadolint?tab=readme-ov-file#install
+:rust-install-url: https://www.rust-lang.org/learn/get-started
 :uri-apache-license: https://www.apache.org/licenses/LICENSE-2.0
 :uri-contributor-covenant: https://www.contributor-covenant.org
 :uri-google-style: https://github.com/google/gts
@@ -312,6 +313,15 @@ Install {hadolint-install-url}[hadolint].
 [source,shell]
 ----
 $ brew install hadolint
+----
+
+==== Rust
+
+Install {rust-install-url}[Rust].
+
+[source,shell]
+----
+$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --component rust-analyzer
 ----
 
 ==== shellcheck

@@ -26,6 +26,13 @@
 #   Linux:
 #     sudo apt-get install yamllint
 
+# hadolint needs to be in $PATH
+# https://github.com/hadolint/hadolint
+#   Mac:
+#     brew install hadolint
+#   Linux:
+#     sudo apt-get install hadolint
+
 set -eu
 
 if [ -z "${GIT_REFLOG_ACTION+x}" ]; then

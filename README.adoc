@@ -17,7 +17,9 @@ Sebastian Davids <sdavids@gmx.de>
 // Refs:
 :docker-install-url: https://docs.docker.com/install/
 :easyrsa-install-url: https://easy-rsa.readthedocs.io/en/latest/#obtaining-and-using-easy-rsa
+:fnm-install-url: https://github.com/Schniz/fnm#installation
 :hadolint-install-url: https://github.com/hadolint/hadolint?tab=readme-ov-file#install
+:nvm-install-url: https://github.com/nvm-sh/nvm#installing-and-updating
 :rust-install-url: https://www.rust-lang.org/learn/get-started
 :uri-apache-license: https://www.apache.org/licenses/LICENSE-2.0
 :uri-contributor-covenant: https://www.contributor-covenant.org
@@ -385,6 +387,52 @@ Install {hadolint-install-url}[hadolint].
 [source,shell]
 ----
 $ brew install hadolint
+----
+
+==== Node Version Manager
+
+Install {fnm-install-url}[fnm] or {nvm-install-url}[NVM].
+
+===== fnm
+
+.~/.zprofile
+[source,shell]
+----
+if command -v fnm > /dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd)"
+fi
+----
+
+===== nvm
+
+.~/.zshrc
+[source,shell]
+----
+export NVM_DIR="${HOME}/.nvm"
+
+[ -s "${NVM_DIR}/nvm.sh" ] && . "${NVM_DIR}/nvm.sh"
+[ -s "${NVM_DIR}/bash_completion" ] && . "${NVM_DIR}/bash_completion"
+
+if command -v nvm > /dev/null 2>&1; then
+  autoload -U add-zsh-hook
+  load-nvmrc() {
+    local nvmrc_path="$(nvm_find_nvmrc)"
+    if [ -n "${nvmrc_path}" ]; then
+      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+      if [ "${nvmrc_node_version}" = "N/A" ]; then
+        nvm install
+      elif [ "${nvmrc_node_version}" != "$(nvm version)" ]; then
+        nvm use
+      fi
+    elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+      echo "Reverting to nvm default version"
+      nvm use default
+    fi
+  }
+
+  add-zsh-hook chpwd load-nvmrc
+  load-nvmrc
+fi
 ----
 
 ==== Rust

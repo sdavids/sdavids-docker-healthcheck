@@ -38,6 +38,18 @@ jobs:
               - '**.sh'
             yaml:
               - '**.yaml'
+            js-nodejs-Dockerfile:
+              - .hadolint.yaml
+              - js/nodejs/Dockerfile
+            js-nodejs:
+              - js/nodejs/.npmrc
+              - js/nodejs/.nvmrc
+              - js/nodejs/eslint.config.mjs
+              - js/nodejs/package.json
+              - js/nodejs/package-lock.json
+              - js/nodejs/prettier.config.mjs
+              - 'js/nodejs/src/**.mjs'
+              - 'js/nodejs/test/**.mjs'
             rust-http-Dockerfile:
               - .hadolint.yaml
               - rust/http/Dockerfile
@@ -62,6 +74,32 @@ jobs:
       - if: steps.changes.outputs.yaml == 'true'
         name: Lint YAML files
         run: yamllint --strict .
+      # --- js/nodejs ----------------------------------------------------------
+      - if: steps.changes.outputs.js-nodejs-Dockerfile == 'true'
+        name: Lint js/nodejs Dockerfile
+        # https://github.com/hadolint/hadolint-action/releases
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: js/nodejs/Dockerfile
+      - if: steps.changes.outputs.js-nodejs == 'true'
+        name: Setup node and install dependencies for js/nodejs
+        uses: ./.github/actions/setup-node-and-install-dependencies
+        with:
+          working-directory: js/nodejs
+          node-version-file: js/nodejs/.nvmrc
+          dependencies-lock-file: js/nodejs/package-lock.json
+      - if: steps.changes.outputs.js == 'true'
+        name: Check js/nodejs formatting
+        working-directory: js/nodejs
+        run: scripts/format_check.sh
+      - if: steps.changes.outputs.js == 'true'
+        name: Lint js/nodejs files
+        working-directory: js/nodejs
+        run: scripts/lint.sh
+      - if: steps.changes.outputs.js == 'true'
+        name: Test js/nodejs
+        working-directory: js/nodejs
+        run: scripts/test.sh
       # --- rust/http ------------------------------------------------------
       - if: steps.changes.outputs.rust-http-Dockerfile == 'true'
         name: Lint rust/http Dockerfile

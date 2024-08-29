@@ -1,0 +1,341 @@
+// SPDX-FileCopyrightText: © 2024 Sebastian Davids <sdavids@gmx.de>
+// SPDX-License-Identifier: Apache-2.0
+= sdavids-docker-healthcheck-js-nodejs
+// Metadata:
+:description: a Node.js-based Docker health check for an HTTP(S) URL passed in via ENV
+// Settings:
+:sectnums:
+:sectanchors:
+:sectlinks:
+:toc: macro
+:toc-placement!:
+:source-highlighter: rouge
+:rouge-style: github
+
+ifdef::env-browser[:outfilesuffix: .adoc]
+
+ifdef::env-github[]
+:outfilesuffix: .adoc
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+endif::[]
+
+toc::[]
+
+A Node.js-based Docker health check for an HTTP(S) URL passed in via ENV.
+
+[NOTE]
+====
+The health check URL has to return https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200[HTTP 200].
+
+The response body is not evaluated.
+====
+
+[NOTE]
+====
+HTTP, HTTP with HTTPS redirect, and HTTPS URLs are supported.
+
+For security reasons only 3 redirects is followed.
+
+Modify the healthcheck to increase the number of redirects:
+
+.src/healthcheck.mjs
+[source,javascript]
+----
+const maxRedirects = 3;
+----
+====
+
+[TIP]
+====
+You can use http://captive.apple.com and https://captive.apple.com for testing.
+====
+
+This health check uses the HTTP(S) URL passed in via the following ENV variable:
+
+`HEALTHCHECK_URL`:: the HTTP URL to be used for the health check
+
+If `HEALTHCHECK_URL` is not set `http://localhost:3000/-/health/liveness` will be used.
+
+[IMPORTANT]
+====
+The health check calls the URL from within the container therefore `localhost` is the running Docker image and not the `localhost` of the Docker host.
+====
+
+== Development
+
+[source,shell]
+----
+$ npm install --no-ignore-scripts
+----
+
+=== Test
+
+[source,shell]
+----
+$ scripts/test.sh
+----
+
+=== Run
+
+[source,shell]
+----
+$ node src/healthcheck.mjs
+$ echo $?
+0
+
+$ HEALTHCHECK_URL=http://captive.apple.com node src/healthcheck.mjs
+$ echo $?
+0
+
+$ NODE_EXTRA_CA_CERTS=ca.crt HEALTHCHECK_URL=https://localhost:3000/-/health/liveness node src/healthcheck.mjs
+$ echo $?
+0
+----
+
+0:: the health check URL returned https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200[HTTP 200]
+64:: the health check URL was invalid
+69:: the maximum number of redirects has been exceeded
+70:: the health check had an internal software error
+76:: the service at the given healthcheck URL uses a self-signed certificate or a certificate with an invalid certificate chain
+78:: the Node.js runtime does not support HTTPS
+100:: the health check URL did not return HTTP 200
+
+=== Format Source Code
+
+[source,shell]
+----
+$ scripts/format.sh
+----
+
+=== Lint Source Code
+
+[source,shell]
+----
+$ scripts/lint.sh
+----
+
+[#usage]
+== Usage
+
+. Copy the health check into your container:
++
+.Dockerfile
+[source,dockerfile]
+----
+COPY src/healthcheck.mjs /node/
+----
+
+. Configure the health check:
++
+.Dockerfile
+[source,dockerfile]
+----
+HEALTHCHECK --interval=5s --timeout=5s --start-period=5s \
+    CMD node --no-warnings /node/healthcheck.mjs
+----
++
+More information:
++
+https://docs.docker.com/engine/reference/builder/#healthcheck[Dockerfile reference - HEALTHCHECK]
+
+. (Optional) Pass the `HEALTHCHECK_URL` to the `docker container run` invocation:
++
+.scripts/docker_start.sh
+[source,dockerfile]
+----
+docker container run \
+...
+  --env HEALTHCHECK_URL='https://localhost:3000/-/health/liveness' \
+...
+----
++
+Alternatively, add the `HEALTHCHECK_URL` to the `Dockerfile`:
++
+.Dockerfile
+[source,shell]
+----
+ENV HEALTHCHECK_URL="https://localhost:3000/-/health/liveness"
+----
+
+. (Optional) If you have an `https` healthcheck URL with a custom certificate authority you need to mount the certificate authorities root certificate and set the environment variable `NODE_EXTRA_CA_CERTS` to make it available to the Node.js runtime:
++
+[source,shell]
+----
+docker container run \
+  --volume "$PWD/ca.crt:/node/ca.crt:ro" \
+  --env NODE_EXTRA_CA_CERTS='/node/ca.crt' \
+  ...
+----
++
+Alternatively, you could add it to your image:
++
+[source,Dockerfile]
+----
+COPY ca.crt /node/
+
+ENV NODE_EXTRA_CA_CERTS=/node/ca.crt
+----
+
+== Examples
+
+=== HTTP
+
+link:Dockerfile[Dockerfile]: a simple link:src/server.mjs[HTTP server]
+
+. link:scripts/docker_build.sh[Build] the image:
++
+[source,shell]
+----
+$ scripts/docker_build.sh
+----
+
+. link:scripts/docker_start_https.sh[Start] a container:
+
++
+[source,shell]
+----
+$ scripts/docker_start_http.sh
+
+Listen local: http://localhost:3000
+
+The URL has been copied to the clipboard.
+----
++
+⇒ http://localhost:3000
+
+. Examine the two endpoints:
++
+[source,shell]
+----
+$ curl -s -o /dev/null -w "%{http_code}" http://localhost:3000
+200
+$ curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/-/health/liveness
+200
+----
+
+. Get the link:scripts/docker_health.sh[health status]:
++
+[source,shell]
+----
+$ scripts/docker_health.sh
+healthy 0
+----
+
+. link:scripts/docker_stop.sh[Stop] the container:
++
+[source,shell]
+----
+$ scripts/docker_stop.sh
+----
+
+. link:scripts/docker_cleanup.sh[Remove all Docker artifacts] related to this project:
++
+[source,shell]
+----
+$ scripts/docker_cleanup.sh
+----
+
+=== HTTPS
+
+link:Dockerfile[Dockerfile]: a simple link:src/server.mjs[HTTPS server]
+
+. CA root certificate
+
+.. link:scripts/create_ca.sh[Create] a new certificate authority and link:scripts/copy_ca_root_cert.sh[copy] its root certificate:
++
+[source,shell]
+----
+$ scripts/create_ca.sh
+$ scripts/copy_ca_root_cert.sh
+----
+
+.. link:scripts/copy_ca_root_cert.sh[Copy] the existing certificate authorities root certificate:
++
+[source,shell]
+----
+$ scripts/copy_ca_root_cert.sh
+----
+
+[#localhost-cert]
+. `localhost` certificate
+
+.. link:scripts/create_ca_based_cert.sh[Create] a new `localhost` certificate:
++
+[source,shell]
+----
+$ scripts/create_ca_based_cert.sh
+----
+
+.. Copy the existing `localhost` certificate:
++
+[source,shell]
+----
+$ scripts/copy_ca_based_cert.sh
+----
+
+. link:scripts/docker_build.sh[Build] the image:
++
+[source,shell]
+----
+$ scripts/docker_build.sh
+----
+
+. link:scripts/docker_start_https.sh[Start] a container:
++
+[source,shell]
+----
+$ scripts/docker_start_https.sh
+
+Listen local: https://localhost:3000
+
+The URL has been copied to the clipboard.
+----
++
+⇒ https://localhost:3000
++
+[NOTE]
+====
+If you see `Listen local: http://localhost:3000` instead:
+
+Either `cert.pem` or `key.pem` could not be read; try creating the <<localhost-cert, localhost certificate>> again.
+====
+
+. Examine the two endpoints:
++
+[source,shell]
+----
+$ curl -s -o /dev/null -w "%{http_code}" https://localhost:3000
+200
+$ curl -s -o /dev/null -w "%{http_code}" https://localhost:3000/-/health/liveness
+200
+----
+
+. Get the link:scripts/docker_health.sh[health status]:
++
+[source,shell]
+----
+$ scripts/docker_health.sh
+healthy 0
+----
+
+. link:scripts/docker_stop.sh[Stop] the container:
++
+[source,shell]
+----
+$ scripts/docker_stop.sh
+----
+
+. link:scripts/docker_cleanup.sh[Remove all Docker artifacts] related to this project:
++
+[source,shell]
+----
+$ scripts/docker_cleanup.sh
+----
+
+. (Optional) link:scripts/delete_ca.sh[Delete] the certificate authority.
++
+[TIP]
+====
+You usually want to keep the certificate authority so you can use for other projects.
+====

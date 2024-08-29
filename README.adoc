@@ -30,6 +30,7 @@ ifdef::env-browser[:outfilesuffix: .adoc]
 ifdef::env-github[]
 :outfilesuffix: .adoc
 :important-caption: :heavy_exclamation_mark:
+:note-caption: :information_source:
 :warning-caption: :warning:
 :badges:
 endif::[]
@@ -46,6 +47,7 @@ toc::[]
 
 Available Docker health checks:
 
+link:js/nodejs/README.adoc/[JavaScript - Node.js]:: a Node.js-based Docker health check for an HTTP(S) URL
 link:rust/http/README.adoc[Rust - http]:: a Rust-based Docker health check for an HTTP URL
 link:rust/https/README.adoc[Rust - https]:: a Rust-based Docker health check for an HTTP(S) URL
 link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a daemon port
@@ -59,6 +61,10 @@ link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a da
 |<<shell-nc,shell - nc>>
 >|4.0K
 |only checks the daemon's port
+
+|<<js-nodejs,JavaScript - Node.js>>
+>|4.0K
+|the `node` binary would add 40.3M
 
 |<<rust-http,Rust - http>>
 >|188.0K
@@ -92,6 +98,30 @@ link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a da
 >|19.0M
 |
 |===
+
+=== JavaScript
+
+[#js-nodejs]
+==== Node.js
+
+[NOTE]
+====
+This healthcheck is only useful in a Node.js Docker image, i.e. an image where the `node` binary already exists--the `node` binary would add 40.3M.
+====
+
+[source,shell]
+----
+$ cd js/nodejs
+$ scripts/docker_build.sh -t js-nodejs
+$ docker run --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /node/healthcheck.mjs'
+4.0K    /node/healthcheck.mjs
+$ docker run --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /usr/bin/node'
+40.3M   /usr/bin/node
+----
+
+===== Usage
+
+link:js/nodejs/README.adoc#usage[js - nodejs]
 
 [#rust-http]
 === Rust - http

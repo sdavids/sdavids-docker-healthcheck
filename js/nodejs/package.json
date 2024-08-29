@@ -1,0 +1,48 @@
+{
+  "name": "sdavids-docker-healthcheck",
+  "description": "",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "contributors": [
+    "Sebastian Davids <sdavids@gmx.de>"
+  ],
+  "homepage": "https://github.com/sdavids/sdavids-docker-healthcheck",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sdavids/sdavids-docker-healthcheck.git"
+  },
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preinstall": "scripts/macos_node_modules_fix.sh",
+    "build": "scripts/build.sh",
+    "clean": "scripts/clean.sh",
+    "clean:node": "scripts/clean_node.sh",
+    "dependency:updates": "scripts/dependency_check_node.sh",
+    "format": "scripts/format.sh",
+    "format:check": "scripts/format_check.sh",
+    "lint": "scripts/lint.sh",
+    "lint:fix": "npx eslint --cache --fix .",
+    "test": "scripts/test.sh"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.16.0",
+    "@eslint/json": "0.8.0",
+    "esbuild": "0.24.0",
+    "eslint": "9.16.0",
+    "globals": "15.13.0",
+    "prettier": "3.4.2"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">= 22.12",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": "10.9.0",
+      "onFail": "download"
+    }
+  }
+}

@@ -9,6 +9,7 @@ set -eu
 
 readonly base_dir="$PWD"
 
+js/nodejs/scripts/format_check.sh "${base_dir}/js/nodejs"
 rust/http/scripts/format_check.sh "${base_dir}/rust/http"
 rust/https/scripts/format_check.sh "${base_dir}/rust/https"
 shell/nc/scripts/format_check.sh "${base_dir}/shell/nc"

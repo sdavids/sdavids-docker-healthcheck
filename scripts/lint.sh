@@ -9,4 +9,5 @@ set -eu
 
 readonly base_dir="$PWD"
 
+rust/http/scripts/lint.sh "${base_dir}/rust/http"
 shell/nc/scripts/lint.sh "${base_dir}/shell/nc"

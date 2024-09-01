@@ -41,6 +41,7 @@ toc::[]
 
 Available Docker health checks:
 
+link:rust/http/README.adoc[Rust - http]:: a Rust-based Docker health check for an HTTP URL
 link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a daemon port
 
 == Size Comparison
@@ -52,6 +53,10 @@ link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a da
 |<<shell-nc,shell - nc>>
 >|4.0K
 |only checks the daemon's port
+
+|<<rust-http,Rust - http>>
+>|188.0K
+|
 
 |<<wget-alpine,wget alpine>>
 >|8.6M
@@ -77,6 +82,21 @@ link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a da
 >|19.0M
 |
 |===
+
+[#rust-http]
+=== Rust - http
+
+[source,shell]
+----
+$ cd rust/http
+$ scripts/docker_build.sh -t rust-http
+$ docker run --rm de.sdavids/sdavids-docker-healthcheck:rust-http sh -c 'du -kh /usr/local/bin/healthcheck'
+188.0K  /usr/local/bin/healthcheck
+----
+
+==== Usage
+
+link:rust/http/README.adoc#usage[Rust - http]
 
 [#shell-nc]
 === shell - nc

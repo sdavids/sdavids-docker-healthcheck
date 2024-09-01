@@ -1,0 +1,215 @@
+// SPDX-FileCopyrightText: © 2024 Sebastian Davids <sdavids@gmx.de>
+// SPDX-License-Identifier: Apache-2.0
+= sdavids-docker-healthcheck-rust-http
+// Metadata:
+:description: a Rust-based Docker health check for an HTTP URL passed in via ENV
+// Settings:
+:sectnums:
+:sectanchors:
+:toc: macro
+:toc-placement!:
+:source-highlighter: rouge
+:rouge-style: github
+
+ifdef::env-browser[:outfilesuffix: .adoc]
+
+ifdef::env-github[]
+:outfilesuffix: .adoc
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:tip-caption: :bulb:
+endif::[]
+
+toc::[]
+
+A Rust-based Docker health check for an HTTP URL passed in via ENV.
+
+[NOTE]
+====
+The health check URL has to return https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200[HTTP 200].
+
+The response body is not evaluated.
+====
+
+[IMPORTANT]
+====
+Only HTTP URLs are supported, i.e. HTTPS redirects are not supported.
+====
+
+[TIP]
+====
+You can use http://captive.apple.com for testing.
+====
+
+This health check uses the HTTP URL passed in via the following ENV variable:
+
+`HEALTHCHECK_URL`:: the HTTP URL to be used for the health check
+
+If `HEALTHCHECK_URL` is not set `http://localhost:3000/-/health/liveness` will be used.
+
+[IMPORTANT]
+====
+The health check calls the URL from within the container therefore `localhost` is the running Docker image and not the `localhost` of the Docker host.
+====
+
+[IMPORTANT]
+====
+There is no check whether the given `HEALTHCHECK_URL` is a syntactically correct HTTP URL.
+====
+
+== Development
+
+=== Build
+
+[source,shell]
+----
+$ scripts/build.sh
+----
+
+=> `target/debug/healthcheck`
+
+=== Test
+
+[source,shell]
+----
+$ scripts/test.sh
+----
+
+=== Run
+
+[source,shell]
+----
+$ target/debug/healthcheck
+$ echo $?
+0
+
+$ HEALTHCHECK_URL=http://captive.apple.com target/debug/healthcheck
+$ echo $?
+0
+----
+
+0:: the health check URL returned https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200[HTTP 200]
+69:: the health check URL was unreachable
+100:: the health check URL did not return HTTP 200
+
+=== Format Source Code
+
+[source,shell]
+----
+$ scripts/format.sh
+----
+
+=== Lint Source Code
+
+[source,shell]
+----
+$ scripts/lint.sh
+----
+
+=== Release Build
+
+[source,shell]
+----
+$ scripts/build_release.sh
+----
+
+=> `target/release/healthcheck`
+
+[#usage]
+== Usage
+
+. Copy the health check into your container:
++
+.Dockerfile
+[source,dockerfile]
+----
+COPY --from=healthcheck \
+  /tmp/target/release/healthcheck \
+  /usr/local/bin/healthcheck
+----
+
+. Configure the health check:
++
+.Dockerfile
+[source,dockerfile]
+----
+HEALTHCHECK --interval=5s --timeout=5s --start-period=5s \
+    CMD healthcheck || exit 1
+----
++
+More information:
++
+https://docs.docker.com/engine/reference/builder/#healthcheck[Dockerfile reference - HEALTHCHECK]
+
+. (Optional) Pass the `HEALTHCHECK_URL` to the `docker container run` invocation:
++
+.scripts/docker_start.sh
+[source,dockerfile]
+----
+docker container run \
+...
+  --env HEALTHCHECK_URL='http://localhost:3000/-/health/liveness' \
+...
+----
++
+Alternatively, add the `HEALTHCHECK_URL` to the `Dockerfile`:
++
+.Dockerfile
+[source,shell]
+----
+ENV HEALTHCHECK_URL="http://localhost:3000/-/health/liveness"
+----
+
+== Example
+
+link:Dockerfile[Dockerfile]: a simple HTTP server
+
+. link:scripts/docker_build.sh[Build] the image:
++
+[source,shell]
+----
+$ scripts/docker_build.sh
+----
+
+. link:scripts/docker_start.sh[Start] a container:
++
+[source,shell]
+----
+$ scripts/docker_start.sh
+
+Listen local: http://localhost:3000
+
+The URL has been copied to the clipboard.
+----
+
+. Examine the two endpoints:
++
+[source,shell]
+----
+$ curl -s -o /dev/null -w "%{http_code}" http://localhost:3000
+200
+$ curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/-/health/liveness
+200
+----
+
+. Get the link:scripts/docker_health.sh[health status]:
++
+[source,shell]
+----
+$ scripts/docker_health.sh
+healthy 0
+----
+
+. link:scripts/docker_stop.sh[Stop] the container:
++
+[source,shell]
+----
+$ scripts/docker_stop.sh
+----
+
+. link:scripts/docker_cleanup.sh[Remove all Docker artifacts] related to this project:
++
+[source,shell]
+----
+$ scripts/docker_cleanup.sh
+----

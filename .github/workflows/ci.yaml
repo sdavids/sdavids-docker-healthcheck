@@ -38,9 +38,52 @@ jobs:
               - '**.sh'
             yaml:
               - '**.yaml'
+            rust-http-Dockerfile:
+              - .hadolint.yaml
+              - rust/http/Dockerfile
+            rust-http:
+              - 'rust/http/src/**'
+              - 'rust/http/tests/**'
+              - rust/http/Cargo.lock
+              - rust/http/Cargo.toml
+              - rust/http/rust-toolchain.toml
       - if: steps.changes.outputs.sh == 'true'
         name: Lint shell scripts
         run: scripts/shellscript_check.sh
       - if: steps.changes.outputs.yaml == 'true'
         name: Lint YAML files
         run: yamllint --strict .
+      # --- rust/http ------------------------------------------------------
+      - if: steps.changes.outputs.rust-http-Dockerfile == 'true'
+        name: Lint rust/http Dockerfile
+        # https://github.com/hadolint/hadolint-action/releases
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: rust/http/Dockerfile
+      - if: steps.changes.outputs.rust-http == 'true'
+        name: Install rust/http Rust
+        working-directory: rust/http
+        run: rustup show
+      - if: steps.changes.outputs.rust-http == 'true'
+        name: Cache rust/http Rust files
+        # https://github.com/Swatinem/rust-cache/releases
+        uses: Swatinem/rust-cache@v2.7.5
+        with:
+          shared-key: rust-http
+          workspaces: rust/http
+      - if: steps.changes.outputs.rust-http == 'true'
+        name: Check rust/http formatting
+        working-directory: rust/http
+        run: scripts/format_check.sh
+      - if: steps.changes.outputs.rust-http == 'true'
+        name: Lint rust/http files
+        working-directory: rust/http
+        run: scripts/lint.sh
+      - if: steps.changes.outputs.rust-http == 'true'
+        name: Test rust/http
+        working-directory: rust/http
+        run: cargo test --no-fail-fast
+      - if: steps.changes.outputs.rust-http == 'true'
+        name: Build rust/http
+        working-directory: rust/http
+        run: scripts/build_release.sh

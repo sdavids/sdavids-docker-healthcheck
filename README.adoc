@@ -16,6 +16,7 @@ Sebastian Davids <sdavids@gmx.de>
 :rouge-style: github
 // Refs:
 :docker-install-url: https://docs.docker.com/install/
+:easyrsa-install-url: https://easy-rsa.readthedocs.io/en/latest/#obtaining-and-using-easy-rsa
 :hadolint-install-url: https://github.com/hadolint/hadolint?tab=readme-ov-file#install
 :rust-install-url: https://www.rust-lang.org/learn/get-started
 :uri-apache-license: https://www.apache.org/licenses/LICENSE-2.0
@@ -26,6 +27,8 @@ ifdef::env-browser[:outfilesuffix: .adoc]
 
 ifdef::env-github[]
 :outfilesuffix: .adoc
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
 :badges:
 endif::[]
 
@@ -42,6 +45,7 @@ toc::[]
 Available Docker health checks:
 
 link:rust/http/README.adoc[Rust - http]:: a Rust-based Docker health check for an HTTP URL
+link:rust/https/README.adoc[Rust - https]:: a Rust-based Docker health check for an HTTP(S) URL
 link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a daemon port
 
 == Size Comparison
@@ -56,6 +60,10 @@ link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a da
 
 |<<rust-http,Rust - http>>
 >|188.0K
+|
+
+|<<rust-https,Rust - https>>
+>|480.0K
 |
 
 |<<wget-alpine,wget alpine>>
@@ -97,6 +105,21 @@ $ docker run --rm de.sdavids/sdavids-docker-healthcheck:rust-http sh -c 'du -kh 
 ==== Usage
 
 link:rust/http/README.adoc#usage[Rust - http]
+
+[#rust-https]
+=== Rust - https
+
+[source,shell]
+----
+$ cd rust/https
+$ scripts/docker_build.sh -t rust-https
+$ docker run --rm de.sdavids/sdavids-docker-healthcheck:rust-https sh -c 'du -kh /usr/local/bin/healthcheck'
+480.0K  /usr/local/bin/healthcheck
+----
+
+==== Usage
+
+link:rust/https/README.adoc#usage[Rust - https]
 
 [#shell-nc]
 === shell - nc
@@ -321,6 +344,35 @@ git config blame.ignoreRevsFile .git-blame-ignore-revs
 ==== Docker
 
 Install {docker-install-url}[Docker].
+
+==== easyrsa
+
+[IMPORTANT]
+====
+Ensure that you install version `3.1.7` and not `3.2.0`!
+
+Version `3.2.0` is an incompatible https://github.com/OpenVPN/easy-rsa/releases/tag/v3.2.0[development snapshot release].
+====
+
+===== Linux
+
+Install {easyrsa-install-url}[easyrsa].
+
+===== Mac
+
+[WARNING]
+====
+Unfortunately, homebrew provides `easy-rsa` version `3.2.0` at this point in time (August 2024).
+====
+
+[source,shell]
+----
+$ curl -L https://github.com/OpenVPN/easy-rsa/releases/download/v3.1.7/EasyRSA-3.1.7.tgz -o ~/Downloads/easy-rsa.tgz
+$ tar -xzf ~/Downloads/easy-rsa.tgz -C ~/.local/share
+$ mv  ~/.local/share/EasyRSA-3.1.7 ~/.local/share/easyrsa
+$ ln -s ~/.local/share/easyrsa/easyrsa ~/.local/bin/easyrsa
+$ rm ~/Downloads/easy-rsa.tgz
+----
 
 ==== hadolint
 

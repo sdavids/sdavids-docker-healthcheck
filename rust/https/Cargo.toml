@@ -1,0 +1,34 @@
+# SPDX-FileCopyrightText: © 2024 Sebastian Davids <sdavids@gmx.de>
+# SPDX-License-Identifier: Apache-2.0
+
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "sdavids-docker-healthcheck-rust-https"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.83.0"
+authors = ["Sebastian Davids <sdavids@gmx.de>"]
+description = "A Docker health check for an HTTP(S) URL passed in via ENV"
+homepage = "https://github.com/sdavids/sdavids-docker-healthcheck"
+repository = "https://github.com/sdavids/sdavids-docker-healthcheck"
+readme = "README.adoc"
+keywords = ["docker"]
+categories = ["web-programming::http-client"]
+license = "Apache-2.0"
+publish = false
+
+[[bin]]
+name = "healthcheck"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+opt-level = "s"
+strip = "symbols"
+
+[dependencies]
+exitcode = "1.1.2"
+minreq = { version = "2.13.0", features = ["https-rustls-probe"] }

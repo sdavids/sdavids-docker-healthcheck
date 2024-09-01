@@ -10,4 +10,5 @@ set -eu
 readonly base_dir="$PWD"
 
 rust/http/scripts/format_check.sh "${base_dir}/rust/http"
+rust/https/scripts/format_check.sh "${base_dir}/rust/https"
 shell/nc/scripts/format_check.sh "${base_dir}/shell/nc"

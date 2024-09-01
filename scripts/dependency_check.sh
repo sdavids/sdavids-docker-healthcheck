@@ -10,3 +10,4 @@ set -eu
 readonly base_dir="$PWD"
 
 rust/http/scripts/dependency_check_rust.sh "${base_dir}/rust/http"
+rust/https/scripts/dependency_check_rust.sh "${base_dir}/rust/https"

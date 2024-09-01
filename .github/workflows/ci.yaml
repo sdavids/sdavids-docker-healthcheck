@@ -47,6 +47,15 @@ jobs:
               - rust/http/Cargo.lock
               - rust/http/Cargo.toml
               - rust/http/rust-toolchain.toml
+            rust-https-Dockerfile:
+              - .hadolint.yaml
+              - rust/https/Dockerfile
+            rust-https:
+              - 'rust/https/src/**'
+              - 'rust/https/tests/**'
+              - rust/https/Cargo.lock
+              - rust/https/Cargo.toml
+              - rust/https/rust-toolchain.toml
       - if: steps.changes.outputs.sh == 'true'
         name: Lint shell scripts
         run: scripts/shellscript_check.sh
@@ -86,4 +95,38 @@ jobs:
       - if: steps.changes.outputs.rust-http == 'true'
         name: Build rust/http
         working-directory: rust/http
+        run: scripts/build_release.sh
+      # --- rust/https -----------------------------------------------------
+      - if: steps.changes.outputs.rust-https-Dockerfile == 'true'
+        name: Lint rust/https Dockerfile
+        # https://github.com/hadolint/hadolint-action/releases
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: rust/https/Dockerfile
+      - if: steps.changes.outputs.rust-https == 'true'
+        name: Install rust/https Rust
+        working-directory: rust/https
+        run: rustup show
+      - if: steps.changes.outputs.rust-https == 'true'
+        name: Cache rust/https Rust files
+        # https://github.com/Swatinem/rust-cache/releases
+        uses: Swatinem/rust-cache@v2.7.5
+        with:
+          shared-key: rust-https
+          workspaces: rust/https
+      - if: steps.changes.outputs.rust-https == 'true'
+        name: Check rust/https formatting
+        working-directory: rust/https
+        run: scripts/format_check.sh
+      - if: steps.changes.outputs.rust-https == 'true'
+        name: Lint rust/https files
+        working-directory: rust/https
+        run: scripts/lint.sh
+      - if: steps.changes.outputs.rust-https == 'true'
+        name: Test rust/https
+        working-directory: rust/https
+        run: cargo test --no-fail-fast
+      - if: steps.changes.outputs.rust-https == 'true'
+        name: Build rust/https
+        working-directory: rust/https
         run: scripts/build_release.sh

@@ -105,6 +105,7 @@ linters-settings:
         allow:
           - $gostd
           - sdavids.de
+          - github.com/dedelala/sysexits
         deny:
           - pkg: io/ioutil
             desc: >-

@@ -50,6 +50,7 @@ scripts/shellscript_check.sh "${base_dir}"
 yamllint --strict "${base_dir}"
 
 # https://github.com/hadolint/hadolint#cli
+hadolint --no-color go/http/Dockerfile
 hadolint --no-color js/nodejs/Dockerfile
 hadolint --no-color rust/http/Dockerfile
 hadolint --no-color rust/https/Dockerfile

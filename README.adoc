@@ -16,6 +16,8 @@ Sebastian Davids <sdavids@gmx.de>
 :rouge-style: github
 // Refs:
 :docker-install-url: https://docs.docker.com/install/
+:go-install-url: https://go.dev/doc/install
+:golangci-install-url: https://golangci-lint.run/usage/install/#local-installation
 :easyrsa-install-url: https://easy-rsa.readthedocs.io/en/latest/#obtaining-and-using-easy-rsa
 :fnm-install-url: https://github.com/Schniz/fnm#installation
 :hadolint-install-url: https://github.com/hadolint/hadolint?tab=readme-ov-file#install
@@ -405,6 +407,14 @@ $ mv  ~/.local/share/EasyRSA-3.1.7 ~/.local/share/easyrsa
 $ ln -s ~/.local/share/easyrsa/easyrsa ~/.local/bin/easyrsa
 $ rm ~/Downloads/easy-rsa.tgz
 ----
+
+==== Go
+
+Install {go-install-url}[Go].
+
+==== golangci-lint
+
+Install {golangci-install-url}[golangci-lint].
 
 ==== hadolint
 

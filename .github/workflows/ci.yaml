@@ -50,6 +50,13 @@ jobs:
               - js/nodejs/prettier.config.mjs
               - 'js/nodejs/src/**.mjs'
               - 'js/nodejs/test/**.mjs'
+            go-http-Dockerfile:
+              - .hadolint.yaml
+              - go/http/Dockerfile
+            go-http:
+              - go/http/go.mod
+              - go/http/go.sum
+              - 'go/http/**.go'
             rust-http-Dockerfile:
               - .hadolint.yaml
               - rust/http/Dockerfile
@@ -100,6 +107,35 @@ jobs:
         name: Test js/nodejs
         working-directory: js/nodejs
         run: scripts/test.sh
+      # --- go/http ----------------------------------------------------------
+      - if: steps.changes.outputs.go-http-Dockerfile == 'true'
+        name: Lint go/http/Dockerfile
+        # https://github.com/hadolint/hadolint-action/releases
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: go/http/Dockerfile
+      - if: steps.changes.outputs.go-http == 'true'
+        name: Install Go for go/http
+        # https://github.com/actions/setup-go/releases
+        uses: actions/setup-go@v5.1.0
+        with:
+          go-version-file: go/http/go.mod
+      - if: steps.changes.outputs.go-http == 'true'
+        name: Lint go/http files
+        # https://github.com/golangci/golangci-lint-action/releases
+        uses: golangci/golangci-lint-action@v6.1.1
+        with:
+          # https://github.com/golangci/golangci-lint/releases
+          version: v1.62.0
+          working-directory: go/http
+      - if: steps.changes.outputs.go-http == 'true'
+        name: Test go/http
+        working-directory: go/http
+        run: scripts/test.sh
+      - if: steps.changes.outputs.go-http == 'true'
+        name: Build go/http
+        working-directory: go/http
+        run: scripts/build_release.sh
       # --- rust/http ------------------------------------------------------
       - if: steps.changes.outputs.rust-http-Dockerfile == 'true'
         name: Lint rust/http Dockerfile

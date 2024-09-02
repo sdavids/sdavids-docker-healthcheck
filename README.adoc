@@ -49,6 +49,7 @@ toc::[]
 
 Available Docker health checks:
 
+link:go/http/README.adoc[Go - http]:: a Go-based Docker health check for an HTTP URL
 link:js/nodejs/README.adoc/[JavaScript - Node.js]:: a Node.js-based Docker health check for an HTTP(S) URL
 link:rust/http/README.adoc[Rust - http]:: a Rust-based Docker health check for an HTTP URL
 link:rust/https/README.adoc[Rust - https]:: a Rust-based Docker health check for an HTTP(S) URL
@@ -76,6 +77,10 @@ link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a da
 >|480.0K
 |
 
+|<<go-http,Go - http>>
+>|5.0M
+|
+
 |<<wget-alpine,wget alpine>>
 >|8.6M
 |
@@ -100,6 +105,23 @@ link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a da
 >|19.0M
 |
 |===
+
+=== Go
+
+[#go-http]
+==== Go - http
+
+[source,shell]
+----
+$ cd go/http
+$ scripts/docker_build.sh -t go-http
+$ docker run --rm de.sdavids/sdavids-docker-healthcheck:go-http sh -c 'du -kh /usr/local/bin/healthcheck'
+5.0M    /usr/local/bin/healthcheck
+----
+
+===== Usage
+
+link:go/http/README.adoc#usage[Go - http]
 
 === JavaScript
 

@@ -16,6 +16,7 @@ toc::[]
 
 We use the https://github.com/google/styleguide[Google Style] for all code, except:
 
+Go:: https://pkg.go.dev/cmd/gofmt[gofmt]
 JavaScript:: https://prettier.io[prettier]
 Rust:: https://rust-lang.github.io/rustfmt/[Rustfmt]
 

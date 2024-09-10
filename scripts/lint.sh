@@ -10,6 +10,7 @@ set -eu
 readonly base_dir="$PWD"
 
 go/http/scripts/lint.sh "${base_dir}/go/http"
+go/https/scripts/lint.sh "${base_dir}/go/https"
 js/nodejs/scripts/lint.sh "${base_dir}/js/nodejs"
 rust/http/scripts/lint.sh "${base_dir}/rust/http"
 rust/https/scripts/lint.sh "${base_dir}/rust/https"

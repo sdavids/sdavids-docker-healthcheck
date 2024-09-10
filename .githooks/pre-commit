@@ -51,6 +51,7 @@ yamllint --strict "${base_dir}"
 
 # https://github.com/hadolint/hadolint#cli
 hadolint --no-color go/http/Dockerfile
+hadolint --no-color go/https/Dockerfile
 hadolint --no-color js/nodejs/Dockerfile
 hadolint --no-color rust/http/Dockerfile
 hadolint --no-color rust/https/Dockerfile

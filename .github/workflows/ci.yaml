@@ -57,6 +57,13 @@ jobs:
               - go/http/go.mod
               - go/http/go.sum
               - 'go/http/**.go'
+            go-https-Dockerfile:
+              - .hadolint.yaml
+              - go/https/Dockerfile
+            go-https:
+              - go/https/go.mod
+              - go/https/go.sum
+              - 'go/https/**.go'
             rust-http-Dockerfile:
               - .hadolint.yaml
               - rust/http/Dockerfile
@@ -135,6 +142,35 @@ jobs:
       - if: steps.changes.outputs.go-http == 'true'
         name: Build go/http
         working-directory: go/http
+        run: scripts/build_release.sh
+      # --- go/https ----------------------------------------------------------
+      - if: steps.changes.outputs.go-https-Dockerfile == 'true'
+        name: Lint go/https/Dockerfile
+        # https://github.com/hadolint/hadolint-action/releases
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: go/https/Dockerfile
+      - if: steps.changes.outputs.go-https == 'true'
+        name: Install Go for go/https
+        # https://github.com/actions/setup-go/releases
+        uses: actions/setup-go@v5.1.0
+        with:
+          go-version-file: go/https/go.mod
+      - if: steps.changes.outputs.go-https == 'true'
+        name: Lint go/https files
+        # https://github.com/golangci/golangci-lint-action/releases
+        uses: golangci/golangci-lint-action@v6.1.1
+        with:
+          # https://github.com/golangci/golangci-lint/releases
+          version: v1.62.0
+          working-directory: go/https
+      - if: steps.changes.outputs.go-https == 'true'
+        name: Test go/https
+        working-directory: go/https
+        run: scripts/test.sh
+      - if: steps.changes.outputs.go-https == 'true'
+        name: Build go/https
+        working-directory: go/https
         run: scripts/build_release.sh
       # --- rust/http ------------------------------------------------------
       - if: steps.changes.outputs.rust-http-Dockerfile == 'true'

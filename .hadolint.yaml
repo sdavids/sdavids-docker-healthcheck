@@ -7,3 +7,4 @@
 failure-threshold: style
 trustedRegistries:
   - docker.io
+  - ghcr.io

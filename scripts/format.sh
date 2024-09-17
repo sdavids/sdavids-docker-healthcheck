@@ -11,6 +11,7 @@ readonly base_dir="$PWD"
 
 go/http/scripts/format.sh "${base_dir}/go/http"
 go/https/scripts/format.sh "${base_dir}/go/https"
+java/http/scripts/format.sh "${base_dir}/java/http"
 js/nodejs/scripts/format.sh "${base_dir}/js/nodejs"
 rust/http/scripts/format.sh "${base_dir}/rust/http"
 rust/https/scripts/format.sh "${base_dir}/rust/https"

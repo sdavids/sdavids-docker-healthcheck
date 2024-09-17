@@ -39,6 +39,7 @@ Available Docker health checks:
 
 link:go/http/README.adoc[Go http]:: a Go-based Docker health check for an HTTP URL
 link:go/https/README.adoc[Go https]:: a Go-based Docker health check for an HTTP(S) URL
+link:java/http/README.adoc/[Java http]:: a Java-based Docker health check for an HTTP URL
 link:js/nodejs/README.adoc/[JavaScript Node.js]:: a Node.js-based Docker health check for an HTTP(S) URL
 link:rust/http/README.adoc[Rust http]:: a Rust-based Docker health check for an HTTP URL
 link:rust/https/README.adoc[Rust https]:: a Rust-based Docker health check for an HTTP(S) URL
@@ -64,6 +65,10 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 
 |<<rust-https,Rust https>>
 >|548.0K
+|
+
+|<<java-http,Java http>>
+>|4.3M
 |
 
 |<<go-http,Go http>>
@@ -122,6 +127,23 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:g
 ===== Usage
 
 link:go/https/README.adoc#usage[Go https]
+
+=== Java
+
+[#java-http]
+==== http
+
+[,console]
+----
+$ cd java/http
+$ scripts/docker_build.sh -p linux/amd64 -t java-http
+$ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:java-http sh -c 'du -kh /usr/local/bin/healthcheck'
+4.3M    /usr/local/bin/healthcheck
+----
+
+===== Usage
+
+link:java/http/README.adoc#usage[Java http]
 
 === JavaScript
 

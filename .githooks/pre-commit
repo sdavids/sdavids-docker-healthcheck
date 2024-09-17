@@ -71,6 +71,7 @@ if command -v hadolint >/dev/null 2>&1; then
   # https://github.com/hadolint/hadolint#cli
   hadolint go/http/Dockerfile
   hadolint go/https/Dockerfile
+  hadolint java/http/Dockerfile
   hadolint js/nodejs/Dockerfile
   hadolint rust/http/Dockerfile
   hadolint rust/https/Dockerfile

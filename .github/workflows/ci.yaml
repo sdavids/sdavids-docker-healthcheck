@@ -38,6 +38,11 @@ jobs:
               - '**.sh'
             yaml:
               - '**.yaml'
+            java-http-Dockerfile:
+              - .hadolint.yaml
+              - java/http/Dockerfile
+            java-http:
+              - 'java/http/src/*.java'
             js-nodejs-Dockerfile:
               - .hadolint.yaml
               - js/nodejs/Dockerfile
@@ -85,6 +90,30 @@ jobs:
       - if: steps.changes.outputs.yaml == 'true'
         name: Lint YAML files
         run: yamllint --strict .
+      # --- java/http ----------------------------------------------------------
+      - if: steps.changes.outputs.java-http-Dockerfile == 'true'
+        name: Lint java/http Dockerfile
+        # https://github.com/hadolint/hadolint-action/releases
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: java/http/Dockerfile
+      - if: steps.changes.outputs.java-http == 'true'
+        name: Setup Java
+        # https://github.com/graalvm/setup-graalvm/releases
+        uses: graalvm/setup-graalvm@v1.3.3
+        with:
+          distribution: graalvm-community
+          version: 24.0.1
+          java-version: 24.0.1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - if: steps.changes.outputs.java-http == 'true'
+        name: Check java/http formatting
+        working-directory: java/http
+        run: scripts/format_check.sh
+      - if: steps.changes.outputs.java-http == 'true'
+        name: Lint java/http files
+        working-directory: java/http
+        run: scripts/lint.sh
       # --- js/nodejs ----------------------------------------------------------
       - if: steps.changes.outputs.js-nodejs-Dockerfile == 'true'
         name: Lint js/nodejs Dockerfile

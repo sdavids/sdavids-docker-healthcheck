@@ -414,6 +414,22 @@ Install {hadolint-install-url}[hadolint].
 $ brew install hadolint
 ----
 
+[#jdk]
+==== JDK
+
+There are https://whichjdk.com[several different JDKs] and multiple options for installing them.
+
+The https://whichjdk.com/#what-is-the-best-way-to-install-a-jdk-for-local-development[recommended] way is to https://sdkman.io/install[install via SDKMAN!]:
+
+[,console]
+----
+$ sdk install java
+----
+
+===== More Information
+
+https://sdkman.io/jdks[SDKMAN JDKs]
+
 ==== Node Version Manager
 
 Install {fnm-install-url}[fnm] or {nvm-install-url}[NVM].

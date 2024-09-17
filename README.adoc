@@ -66,6 +66,10 @@ link:shell/nc/README.adoc[shell - nc]:: a nc-based Docker health check for a dae
 >|548.0K
 |
 
+|<<java-http,Java - http>>
+>|4.0M
+|
+
 |<<go-http,Go - http>>
 >|5.6M
 |
@@ -122,6 +126,23 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:g
 ===== Usage
 
 link:go/https/README.adoc#usage[Go - https]
+
+=== Java
+
+[#java-http]
+==== Java - http
+
+[,console]
+----
+$ cd java/http
+$ scripts/docker_build.sh -p linux/amd64 -t java-http
+$ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:java-http sh -c 'du -kh /usr/local/bin/healthcheck'
+4.0M    /usr/local/bin/healthcheck
+----
+
+===== Usage
+
+link:java/http/README.adoc#usage[Java - http]
 
 === JavaScript
 
@@ -402,7 +423,7 @@ There are https://whichjdk.com[several different JDKs] and multiple options of i
 
 The https://whichjdk.com/#what-is-the-best-way-to-install-a-jdk-for-local-development[recommended] way is to https://sdkman.io/install[install via SDKMAN!]:
 
-[source,shell]
+[,console]
 ----
 $ sdk install java
 ----

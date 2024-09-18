@@ -1,0 +1,149 @@
+// SPDX-FileCopyrightText: © 2024 Sebastian Davids <sdavids@gmx.de>
+// SPDX-License-Identifier: Apache-2.0
+= sdavids-docker-healthcheck-shell-nc
+// Metadata:
+:description: a nc-based Docker health check
+// Settings:
+:sectnums:
+:sectanchors:
+:toc: macro
+:toc-placement!:
+:source-highlighter: rouge
+:rouge-style: github
+
+ifdef::env-browser[:outfilesuffix: .adoc]
+
+ifdef::env-github[]
+:outfilesuffix: .adoc
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:tip-caption: :bulb:
+endif::[]
+
+toc::[]
+
+An https://www.boxmatrix.info/wiki/Property:nc[nc]-based Docker health check for a daemon port.
+
+[IMPORTANT]
+====
+The port is probed for a daemon listening.
+
+No request is sent therefore no response body or status is evaluated.
+====
+
+This health check uses the port passed in via the following ENV variable:
+
+`HEALTHCHECK_PORT`:: the port to be used for the health check
+
+If `HEALTHCHECK_PORT` is not set `3000` will be used.
+
+=== Format Source Code
+
+[source,shell]
+----
+$ scripts/format.sh
+----
+
+=== Lint Source Code
+
+[source,shell]
+----
+$ scripts/lint.sh
+----
+
+[#usage]
+== Usage
+
+. Copy the health check into your container:
++
+.Dockerfile
+[source,dockerfile]
+----
+COPY --chmod=0777 src/healthcheck.sh /usr/local/bin/healthcheck
+----
+
+. Configure the health check:
++
+.Dockerfile
+[source,dockerfile]
+----
+HEALTHCHECK --interval=5s --timeout=5s --start-period=5s \
+    CMD healthcheck || exit 1
+----
++
+More information:
++
+https://docs.docker.com/engine/reference/builder/#healthcheck[Dockerfile reference - HEALTHCHECK]
+
+. (Optional) Pass the `HEALTHCHECK_PORT` to the `docker container run` invocation:
++
+.scripts/docker_start.sh
+[source,dockerfile]
+----
+docker container run \
+...
+  --env HEALTHCHECK_PORT=8080 \
+...
+----
++
+Alternatively, add the `HEALTHCHECK_PORT` to the `Dockerfile`:
++
+.Dockerfile
+[source,shell]
+----
+ENV HEALTHCHECK_PORT=8080
+----
+
+== Example
+
+link:Dockerfile[Dockerfile]: a simple HTTP server
+
+. link:scripts/docker_build.sh[Build] the image:
++
+[source,shell]
+----
+$ scripts/docker_build.sh
+----
+
+. link:scripts/docker_start.sh[Start] a container:
++
+[source,shell]
+----
+$ scripts/docker_start.sh
+
+Listen local: http://localhost:3000
+
+The URL has been copied to the clipboard.
+----
+
+. Examine the two endpoints:
++
+[source,shell]
+----
+$ curl -s -o /dev/null -w "%{http_code}" http://localhost:3000
+200
+$ curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/-/health/liveness
+200
+----
+
+. Get the link:scripts/docker_health.sh[health status]:
++
+[source,shell]
+----
+$ scripts/docker_health.sh
+healthy 0
+----
+
+. link:scripts/docker_stop.sh[Stop] the container:
++
+[source,shell]
+----
+$ scripts/docker_stop.sh
+----
+
+. link:scripts/docker_cleanup.sh[Remove all Docker artifacts] related to this project:
++
+[source,shell]
+----
+$ scripts/docker_cleanup.sh
+----

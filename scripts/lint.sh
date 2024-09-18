@@ -7,4 +7,6 @@
 
 set -eu
 
-#readonly base_dir="$PWD"
+readonly base_dir="$PWD"
+
+shell/nc/scripts/lint.sh "${base_dir}/shell/nc"

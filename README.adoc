@@ -40,11 +40,17 @@ toc::[]
 
 Available Docker health checks:
 
+link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a daemon port
+
 == Size Comparison
 
 [options="header,autowidth"]
 |===
 |Program |Size |Notes
+
+|<<shell-nc,shell - nc>>
+>|4.0K
+|only checks the daemon's port
 
 |<<wget-alpine,wget alpine>>
 >|8.6M
@@ -70,6 +76,26 @@ Available Docker health checks:
 >|19.0M
 |
 |===
+
+[#shell-nc]
+=== shell - nc
+
+[NOTE]
+====
+This healthcheck will only check if the daemon's port is reachable, i.e. it will not check the HTTP body or status code of the response.
+====
+
+[source,shell]
+----
+$ cd shell/nc
+$ scripts/docker_build.sh -t shell-nc
+$ docker run --rm de.sdavids/sdavids-docker-healthcheck:shell-nc sh -c 'du -kh /usr/local/bin/healthcheck'
+4.0K    /usr/local/bin/healthcheck
+----
+
+==== Usage
+
+link:shell/nc/README.adoc#usage[shell - nc]
 
 === curl
 

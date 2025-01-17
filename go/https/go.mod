@@ -8,6 +8,6 @@ module sdavids.de/sdavids-docker-healthcheck-go-https
 // https://go.dev/doc/devel/release
 go 1.23
 
-toolchain go1.23.4
+toolchain go1.23.5
 
 require github.com/dedelala/sysexits v0.0.0-20170927115716-3d3abae01efc

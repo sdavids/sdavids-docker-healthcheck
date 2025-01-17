@@ -9,7 +9,7 @@
 ### healthcheck builder ###
 
 # https://hub.docker.com/_/golang/
-FROM golang:1.23.4-alpine3.20 AS healthcheck
+FROM golang:1.23.5-alpine3.20 AS healthcheck
 
 WORKDIR /app
 

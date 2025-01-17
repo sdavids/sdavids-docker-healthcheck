@@ -68,14 +68,14 @@ link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a da
 
 |<<js-nodejs,JavaScript - Node.js>>
 >|4.0K
-|the `node` binary would add 40.3M
+|the `node` binary would add 40.5M
 
 |<<rust-http,Rust - http>>
->|188.0K
+>|192.0K
 |
 
 |<<rust-https,Rust - https>>
->|480.0K
+>|484.0K
 |
 
 |<<go-http,Go - http>>
@@ -150,7 +150,7 @@ link:go/https/README.adoc#usage[Go - https]
 
 [NOTE]
 ====
-This healthcheck is only useful in a Node.js Docker image, i.e. an image where the `node` binary already exists--the `node` binary would add 40.3M.
+This healthcheck is only useful in a Node.js Docker image, i.e. an image where the `node` binary already exists--the `node` binary would add 40.5M.
 ====
 
 [source,shell]
@@ -160,7 +160,7 @@ $ scripts/docker_build.sh -t js-nodejs
 $ docker run --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /node/healthcheck.mjs'
 4.0K    /node/healthcheck.mjs
 $ docker run --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /usr/bin/node'
-40.3M   /usr/bin/node
+40.5M   /usr/bin/node
 ----
 
 ===== Usage
@@ -175,7 +175,7 @@ link:js/nodejs/README.adoc#usage[js - nodejs]
 $ cd rust/http
 $ scripts/docker_build.sh -t rust-http
 $ docker run --rm de.sdavids/sdavids-docker-healthcheck:rust-http sh -c 'du -kh /usr/local/bin/healthcheck'
-188.0K  /usr/local/bin/healthcheck
+192.0K  /usr/local/bin/healthcheck
 ----
 
 ==== Usage
@@ -190,7 +190,7 @@ link:rust/http/README.adoc#usage[Rust - http]
 $ cd rust/https
 $ scripts/docker_build.sh -t rust-https
 $ docker run --rm de.sdavids/sdavids-docker-healthcheck:rust-https sh -c 'du -kh /usr/local/bin/healthcheck'
-480.0K  /usr/local/bin/healthcheck
+484.0K  /usr/local/bin/healthcheck
 ----
 
 ==== Usage
@@ -224,7 +224,7 @@ link:shell/nc/README.adoc#usage[shell - nc]
 
 [source,shell]
 ----
-$ docker run --rm alpine:3.21.0 sh -c "apk --no-cache --quiet --no-progress add curl=8.11.0-r2 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
+$ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add curl=8.11.1-r0 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
 260.0K  /usr/bin/curl
 652.0K  /usr/lib/libcurl.so.4
 132.0K  /usr/lib/libz.so.1
@@ -270,7 +270,7 @@ $ docker run --rm bellsoft/alpaquita-linux-base:stream-musl-240821 sh -c "apk --
 
 [source,shell]
 ----
-$ docker run --rm debian:12.8-slim sh -c "apt-get -qq update && apt-get -qq install -y curl=7.88.1-10+deb12u8 >/dev/null 2>&1 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
+$ docker run --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq install -y curl=7.88.1-10+deb12u8 >/dev/null 2>&1 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
 324K    /usr/bin/curl
 716K    /lib/aarch64-linux-gnu/libcurl.so.4
 132K    /lib/aarch64-linux-gnu/libz.so.1
@@ -313,7 +313,7 @@ $ docker run --rm debian:12.8-slim sh -c "apt-get -qq update && apt-get -qq inst
 
 [source,shell]
 ----
-$ docker run --rm alpine:3.21.0 sh -c "apk --no-cache --quiet --no-progress add wget=1.25.0-r0 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
+$ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add wget=1.25.0-r0 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
 468.0K  /usr/bin/wget
 644.0K  /usr/lib/libpcre2-8.so.0
 196.0K  /usr/lib/libidn2.so.0
@@ -347,7 +347,7 @@ $ docker run --rm bellsoft/alpaquita-linux-base:stream-musl-240821 sh -c "apk --
 
 [source,shell]
 ----
-$ docker run --rm debian:12.8-slim sh -c "apt-get -qq update && apt-get -qq install -y wget=1.21.3-1+b1 >/dev/null 2>&1 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
+$ docker run --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq install -y wget=1.21.3-1+b1 >/dev/null 2>&1 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
 520K    /usr/bin/wget
 580K    /lib/aarch64-linux-gnu/libpcre2-8.so.0
 68K     /lib/aarch64-linux-gnu/libuuid.so.1

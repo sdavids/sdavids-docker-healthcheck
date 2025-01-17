@@ -90,20 +90,12 @@ link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a da
 >|8.6M
 |
 
-|<<wget-alpaquita-linux-base,wget alpaquita-linux-base>>
->|8.8M
-|
-
 |<<wget-debian,wget debian>>
 >|9.7M
 |
 
 |<<curl-alpine,curl alpine>>
 >|9.8M
-|
-
-|<<curl-alpaquita-linux-base,curl alpaquita-linux-base>>
->|10.3M
 |
 
 |<<curl-debian,curl debian>>
@@ -242,29 +234,6 @@ $ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add 
 9.8M    total
 ----
 
-[#curl-alpaquita-linux-base]
-==== alpaquita-linux-base
-
-[source,shell]
-----
-$ docker run --rm bellsoft/alpaquita-linux-base:stream-musl-240821 sh -c "apk --no-cache --quiet --no-progress add curl=8.9.1-r0 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
-236.0K  /usr/bin/curl
-612.0K  /lib/libcurl.so.4
-100.0K  /lib/libz.so.1
-788.0K  /lib/ld-musl-x86_64.so.1
-160.0K  /lib/libcares.so.2
-140.0K  /lib/libnghttp2.so.14
-196.0K  /lib/libidn2.so.0
-76.0K   /lib/libpsl.so.5
-780.0K  /lib/libssl.so.3
-4.3M    /lib/libcrypto.so.3
-1.1M    /lib/libzstd.so.1
-56.0K   /lib/libbrotlidec.so.1
-1.6M    /lib/libunistring.so.5
-140.0K  /lib/libbrotlicommon.so.1
-10.3M   total
-----
-
 [#curl-debian]
 ==== debian
 
@@ -323,23 +292,6 @@ $ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add 
 708.0K  /lib/ld-musl-aarch64.so.1
 1.7M    /usr/lib/libunistring.so.5
 8.6M    total
-----
-
-[#wget-alpaquita-linux-base]
-==== alpaquita-linux-base
-
-[source,shell]
-----
-$ docker run --rm bellsoft/alpaquita-linux-base:stream-musl-240821 sh -c "apk --no-cache --quiet --no-progress add wget=1.24.5-r0 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
-404.0K  /usr/bin/wget
-684.0K  /lib/libpcre2-8.so.0
-196.0K  /lib/libidn2.so.0
-780.0K  /lib/libssl.so.3
-4.3M    /lib/libcrypto.so.3
-100.0K  /lib/libz.so.1
-788.0K  /lib/ld-musl-x86_64.so.1
-1.6M    /lib/libunistring.so.5
-8.8M    total
 ----
 
 [#wget-debian]

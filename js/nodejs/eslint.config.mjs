@@ -15,12 +15,21 @@ export default [
   },
   {
     files: ['**/*.mjs'],
-    name: 'eslint/js/all',
     ...js.configs.all,
+    name: 'eslint/js/all',
+  },
+  {
+    files: ['**/*.json'],
+    ignores: ['package-lock.json'],
+    language: 'json/json',
+    plugins: {
+      json,
+    },
+    ...json.configs.recommended,
+    name: 'eslint/json/recommended',
   },
   {
     files: ['**/*.mjs'],
-    name: 'sdavids/defaults/js',
     rules: {
       'capitalized-comments': 'off',
       'func-names': ['error', 'always', { generators: 'as-needed' }],
@@ -29,7 +38,6 @@ export default [
       'max-lines-per-function': 'off',
       'max-params': 'off',
       'max-statements': 'off',
-      'no-console': 'off',
       'no-continue': 'off',
       'no-inline-comments': 'off',
       'no-magic-numbers': 'off',
@@ -43,28 +51,22 @@ export default [
       'sort-vars': 'off',
       radix: 'off',
     },
+    name: 'sdavids/js/defaults',
   },
   {
     files: ['src/*.mjs'],
-    name: 'sdavids/js/web',
     languageOptions: {
       globals: {
         ...globals.node,
       },
       parserOptions: {
-        // https://node.green/#ES2023
-        ecmaVersion: 2023,
+        // https://node.green/#ES2024
+        ecmaVersion: 2024,
       },
     },
-  },
-  {
-    files: ['**/*.json'],
-    ignores: ['package-lock.json'],
-    language: 'json/json',
-    plugins: {
-      json,
+    rules: {
+      'no-console': 'off',
     },
-    name: 'eslint/json/recommended',
-    ...json.configs.recommended,
+    name: 'sdavids/js/node',
   },
 ];

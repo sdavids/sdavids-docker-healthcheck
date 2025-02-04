@@ -17,7 +17,7 @@ while getopts ':d:e:n' opt; do
       dry_run='--dry-run'
       ;;
     ?)
-      echo "Usage: $0 [-e <date>] [-n]" >&2
+      echo "Usage: $0 [-d <git repo dir>] [-e <date>] [-n]" >&2
       exit 1
       ;;
   esac
@@ -27,12 +27,17 @@ readonly base_dir="${base_dir:-$PWD}"
 readonly expire="${expire:-1.month.ago}"
 readonly dry_run="${dry_run:-}"
 
+if [ ! -d "${base_dir}" ]; then
+  printf "The directory '%s' does not exist.\n" "${base_dir}" >&2
+  exit 2
+fi
+
 (
   cd "${base_dir}"
 
   if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" != 'true' ]; then
     echo "'${base_dir}' is not a git repository" >&2
-    exit 2
+    exit 3
   fi
 
   # shellcheck disable=SC2086

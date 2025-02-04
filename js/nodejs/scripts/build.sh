@@ -7,6 +7,11 @@ set -eu
 
 readonly base_dir="${1:-$PWD}"
 
+if [ ! -d "${base_dir}" ]; then
+  printf "The directory '%s' does not exist.\n" "${base_dir}" >&2
+  exit 1
+fi
+
 # https://compat-table.github.io/compat-table/es2016plus/#node22_0
 readonly esbuild_target="${1:-es2024}"
 

@@ -3,6 +3,10 @@
 # SPDX-FileCopyrightText: © 2024 Sebastian Davids <sdavids@gmx.de>
 # SPDX-License-Identifier: Apache-2.0
 
+# openssl needs to be in $PATH
+#   Linux:
+#     sudo apt-get install openssl
+
 set -Eeu -o pipefail -o posix
 
 # https://stackoverflow.com/a/3915420

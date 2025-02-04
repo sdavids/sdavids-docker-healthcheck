@@ -7,7 +7,7 @@ set -eu
 
 readonly container_name='sdavids-docker-healthcheck-shell-nc'
 
-docker exec \
+docker container exec \
   --interactive \
   --tty \
   "${container_name}" \

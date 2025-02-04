@@ -37,6 +37,8 @@ This health check uses the port passed in via the following ENV variable:
 
 If `HEALTHCHECK_PORT` is not set `3000` will be used.
 
+== Development
+
 === Format Source Code
 
 [,console]

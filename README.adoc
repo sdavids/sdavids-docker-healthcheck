@@ -54,7 +54,7 @@ link:go/https/README.adoc[Go - https]:: a Go-based Docker health check for an HT
 link:js/nodejs/README.adoc/[JavaScript - Node.js]:: a Node.js-based Docker health check for an HTTP(S) URL
 link:rust/http/README.adoc[Rust - http]:: a Rust-based Docker health check for an HTTP URL
 link:rust/https/README.adoc[Rust - https]:: a Rust-based Docker health check for an HTTP(S) URL
-link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a daemon port
+link:shell/nc/README.adoc[shell - nc]:: a nc-based Docker health check for a daemon port
 
 == Size Comparison
 

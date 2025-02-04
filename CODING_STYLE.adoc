@@ -24,7 +24,7 @@ Rust:: https://rust-lang.github.io/rustfmt/[Rustfmt]
 
 The source code can be formatted via:
 
-[source,shell]
+[,console]
 ----
 $ scripts/format.sh
 ----

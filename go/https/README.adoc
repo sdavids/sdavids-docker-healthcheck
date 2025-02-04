@@ -62,7 +62,7 @@ There is no check whether the given `HEALTHCHECK_URL` is a syntactically correct
 
 === Build
 
-[source,shell]
+[,console]
 ----
 $ scripts/build.sh
 ----
@@ -71,14 +71,14 @@ $ scripts/build.sh
 
 === Test
 
-[source,shell]
+[,console]
 ----
 $ scripts/test.sh
 ----
 
 === Run
 
-[source,shell]
+[,console]
 ----
 $ target/healthcheck
 $ echo $?
@@ -99,21 +99,21 @@ $ echo $?
 
 === Format Source Code
 
-[source,shell]
+[,console]
 ----
 $ scripts/format.sh
 ----
 
 === Lint Source Code
 
-[source,shell]
+[,console]
 ----
 $ scripts/lint.sh
 ----
 
 === Release Build
 
-[source,shell]
+[,console]
 ----
 $ scripts/build_release.sh
 ----
@@ -126,7 +126,7 @@ $ scripts/build_release.sh
 . Copy the health check into your container:
 +
 .Dockerfile
-[source,dockerfile]
+[,dockerfile]
 ----
 COPY --from=healthcheck \
   /app/target/healthcheck \
@@ -136,7 +136,7 @@ COPY --from=healthcheck \
 . Configure the health check:
 +
 .Dockerfile
-[source,dockerfile]
+[,dockerfile]
 ----
 HEALTHCHECK --interval=5s --timeout=5s --start-period=5s \
     CMD healthcheck || exit 1
@@ -149,7 +149,7 @@ https://docs.docker.com/engine/reference/builder/#healthcheck[Dockerfile referen
 . (Optional) Pass the `HEALTHCHECK_URL` to the `docker container run` invocation:
 +
 .scripts/docker_start.sh
-[source,dockerfile]
+[,dockerfile]
 ----
 docker container run \
 ...
@@ -160,14 +160,14 @@ docker container run \
 Alternatively, add the `HEALTHCHECK_URL` to the `Dockerfile`:
 +
 .Dockerfile
-[source,shell]
+[,dockerfile]
 ----
 ENV HEALTHCHECK_URL="https://localhost:3000/-/health/liveness"
 ----
 
 . (Optional) If you have an `https` healthcheck URL with a custom certificate authority you need to add the certificate authorities root certificate to your image; for example for https://hub.docker.com/_/alpine/[Alpine-based] images:
 +
-[source,Dockerfile]
+[,dockerfile]
 ----
 COPY ca.crt /usr/local/share/ca-certificates/
 
@@ -182,21 +182,21 @@ link:Dockerfile[Dockerfile]: a simple HTTPS server
 
 . link:scripts/create_self_signed_cert.sh[Create] a new `localhost` certificate:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/create_self_signed_cert.sh
 ----
 
 . link:scripts/docker_build.sh[Build] the image:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/docker_build.sh
 ----
 
 . link:scripts/docker_start.sh[Start] a container:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/docker_start.sh
 
@@ -207,7 +207,7 @@ The URL has been copied to the clipboard.
 
 . Examine the two endpoints:
 +
-[source,shell]
+[,console]
 ----
 $ curl -s -o /dev/null -w "%{http_code}" https://localhost:3000
 200
@@ -217,7 +217,7 @@ $ curl -s -o /dev/null -w "%{http_code}" https://localhost:3000/-/health/livenes
 
 . Get the link:scripts/docker_health.sh[health status]:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/docker_health.sh
 healthy 0
@@ -225,21 +225,21 @@ healthy 0
 
 . link:scripts/docker_stop.sh[Stop] the container:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/docker_stop.sh
 ----
 
 . link:scripts/docker_cleanup.sh[Remove all Docker artifacts] related to this project:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/docker_cleanup.sh
 ----
 
 . link:scripts/delete_self_signed_cert.sh[Delete] the `localhost` certificate:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/delete_self_signed_cert.sh
 ----

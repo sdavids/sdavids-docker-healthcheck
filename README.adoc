@@ -108,7 +108,7 @@ link:shell/nc/README.adoc[shell - nc]:: an nc-based Docker health check for a da
 [#go-http]
 ==== Go - http
 
-[source,shell]
+[,console]
 ----
 $ cd go/http
 $ scripts/docker_build.sh -t go-http
@@ -123,7 +123,7 @@ link:go/http/README.adoc#usage[Go - http]
 [#go-https]
 ==== Go - https
 
-[source,shell]
+[,console]
 ----
 $ cd go/https
 $ scripts/docker_build.sh -t go-https
@@ -145,7 +145,7 @@ link:go/https/README.adoc#usage[Go - https]
 This healthcheck is only useful in a Node.js Docker image, i.e. an image where the `node` binary already exists--the `node` binary would add 40.5M.
 ====
 
-[source,shell]
+[,console]
 ----
 $ cd js/nodejs
 $ scripts/docker_build.sh -t js-nodejs
@@ -162,7 +162,7 @@ link:js/nodejs/README.adoc#usage[js - nodejs]
 [#rust-http]
 === Rust - http
 
-[source,shell]
+[,console]
 ----
 $ cd rust/http
 $ scripts/docker_build.sh -t rust-http
@@ -177,7 +177,7 @@ link:rust/http/README.adoc#usage[Rust - http]
 [#rust-https]
 === Rust - https
 
-[source,shell]
+[,console]
 ----
 $ cd rust/https
 $ scripts/docker_build.sh -t rust-https
@@ -197,7 +197,7 @@ link:rust/https/README.adoc#usage[Rust - https]
 This healthcheck will only check if the daemon's port is reachable, i.e. it will not check the HTTP body or status code of the response.
 ====
 
-[source,shell]
+[,console]
 ----
 $ cd shell/nc
 $ scripts/docker_build.sh -t shell-nc
@@ -214,7 +214,7 @@ link:shell/nc/README.adoc#usage[shell - nc]
 [#curl-alpine]
 ==== alpine
 
-[source,shell]
+[,console]
 ----
 $ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add curl=8.11.1-r0 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
 260.0K  /usr/bin/curl
@@ -237,7 +237,7 @@ $ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add 
 [#curl-debian]
 ==== debian
 
-[source,shell]
+[,console]
 ----
 $ docker run --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq install -y curl=7.88.1-10+deb12u8 >/dev/null 2>&1 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
 324K    /usr/bin/curl
@@ -280,7 +280,7 @@ $ docker run --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq inst
 [#wget-alpine]
 ==== alpine
 
-[source,shell]
+[,console]
 ----
 $ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add wget=1.25.0-r0 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
 468.0K  /usr/bin/wget
@@ -297,7 +297,7 @@ $ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add 
 [#wget-debian]
 ==== debian
 
-[source,shell]
+[,console]
 ----
 $ docker run --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq install -y wget=1.21.3-1+b1 >/dev/null 2>&1 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
 520K    /usr/bin/wget
@@ -336,14 +336,14 @@ For more information, please see link:CODE_OF_CONDUCT.md[Code of Conduct].
 
 === Format Source Code
 
-[source,shell]
+[,console]
 ----
 $ scripts/format.sh
 ----
 
 === Lint Source Code
 
-[source,shell]
+[,console]
 ----
 $ scripts/lint.sh
 ----
@@ -354,16 +354,16 @@ $ scripts/lint.sh
 ====
 After initializing this repository you need to install the Git hooks via:
 
-[source,shell]
+[,console]
 ----
 $ git config core.hooksPath .githooks
 ----
 
 And configure the https://git-scm.com/docs/git-config#Documentation/git-config.txt-blameignoreRevsFile[ignore-revs-file]:
 
-[source,shell]
+[,console]
 ----
-git config blame.ignoreRevsFile .git-blame-ignore-revs
+$ git config blame.ignoreRevsFile .git-blame-ignore-revs
 ----
 ====
 
@@ -393,7 +393,7 @@ Install {easyrsa-install-url}[easyrsa].
 Unfortunately, homebrew provides `easy-rsa` version `3.2.0` at this point in time (August 2024).
 ====
 
-[source,shell]
+[,console]
 ----
 $ curl -L https://github.com/OpenVPN/easy-rsa/releases/download/v3.1.7/EasyRSA-3.1.7.tgz -o ~/Downloads/easy-rsa.tgz
 $ tar -xzf ~/Downloads/easy-rsa.tgz -C ~/.local/share
@@ -418,7 +418,7 @@ Install {hadolint-install-url}[hadolint].
 
 ===== Mac
 
-[source,shell]
+[,console]
 ----
 $ brew install hadolint
 ----
@@ -430,7 +430,7 @@ Install {fnm-install-url}[fnm] or {nvm-install-url}[NVM].
 ===== fnm
 
 .~/.zprofile
-[source,shell]
+[,zsh]
 ----
 if command -v fnm > /dev/null 2>&1; then
   eval "$(fnm env --use-on-cd)"
@@ -440,7 +440,7 @@ fi
 ===== nvm
 
 .~/.zshrc
-[source,shell]
+[,zsh]
 ----
 export NVM_DIR="${HOME}/.nvm"
 
@@ -473,7 +473,7 @@ fi
 
 Install {rust-install-url}[Rust].
 
-[source,shell]
+[,console]
 ----
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --component rust-analyzer
 ----
@@ -482,14 +482,14 @@ $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --defa
 
 ===== Linux
 
-[source,shell]
+[,console]
 ----
 $ sudo apt-get install shellcheck
 ----
 
 ===== Mac
 
-[source,shell]
+[,console]
 ----
 $ brew install shellcheck
 ----
@@ -498,14 +498,14 @@ $ brew install shellcheck
 
 ===== Linux
 
-[source,shell]
+[,console]
 ----
 $ sudo apt-get install shfmt
 ----
 
 ===== Mac
 
-[source,shell]
+[,console]
 ----
 $ brew install shfmt
 ----
@@ -514,14 +514,14 @@ $ brew install shfmt
 
 ===== Linux
 
-[source,shell]
+[,console]
 ----
 $ sudo apt-get install yamllint
 ----
 
 ===== Mac
 
-[source,shell]
+[,console]
 ----
 $ brew install yamllint
 ----

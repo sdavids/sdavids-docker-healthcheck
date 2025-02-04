@@ -62,7 +62,7 @@ There is no check whether the given `HEALTHCHECK_URL` is a syntactically correct
 
 === Build
 
-[source,shell]
+[,console]
 ----
 $ scripts/build.sh
 ----
@@ -71,14 +71,14 @@ $ scripts/build.sh
 
 === Test
 
-[source,shell]
+[,console]
 ----
 $ scripts/test.sh
 ----
 
 === Run
 
-[source,shell]
+[,console]
 ----
 $ target/healthcheck
 $ echo $?
@@ -95,21 +95,21 @@ $ echo $?
 
 === Format Source Code
 
-[source,shell]
+[,console]
 ----
 $ scripts/format.sh
 ----
 
 === Lint Source Code
 
-[source,shell]
+[,console]
 ----
 $ scripts/lint.sh
 ----
 
 === Release Build
 
-[source,shell]
+[,console]
 ----
 $ scripts/build_release.sh
 ----
@@ -122,7 +122,7 @@ $ scripts/build_release.sh
 . Copy the health check into your container:
 +
 .Dockerfile
-[source,dockerfile]
+[,dockerfile]
 ----
 COPY --from=healthcheck \
   /app/target/healthcheck \
@@ -132,7 +132,7 @@ COPY --from=healthcheck \
 . Configure the health check:
 +
 .Dockerfile
-[source,dockerfile]
+[,dockerfile]
 ----
 HEALTHCHECK --interval=5s --timeout=5s --start-period=5s \
     CMD healthcheck || exit 1
@@ -145,7 +145,7 @@ https://docs.docker.com/engine/reference/builder/#healthcheck[Dockerfile referen
 . (Optional) Pass the `HEALTHCHECK_URL` to the `docker container run` invocation:
 +
 .scripts/docker_start.sh
-[source,dockerfile]
+[,dockerfile]
 ----
 docker container run \
 ...
@@ -156,7 +156,7 @@ docker container run \
 Alternatively, add the `HEALTHCHECK_URL` to the `Dockerfile`:
 +
 .Dockerfile
-[source,shell]
+[,dockerfile]
 ----
 ENV HEALTHCHECK_URL="http://localhost:3000/-/health/liveness"
 ----
@@ -167,14 +167,14 @@ link:Dockerfile[Dockerfile]: a simple HTTP server
 
 . link:scripts/docker_build.sh[Build] the image:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/docker_build.sh
 ----
 
 . link:scripts/docker_start.sh[Start] a container:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/docker_start.sh
 
@@ -185,7 +185,7 @@ The URL has been copied to the clipboard.
 
 . Examine the two endpoints:
 +
-[source,shell]
+[,console]
 ----
 $ curl -s -o /dev/null -w "%{http_code}" http://localhost:3000
 200
@@ -195,7 +195,7 @@ $ curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/-/health/liveness
 
 . Get the link:scripts/docker_health.sh[health status]:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/docker_health.sh
 healthy 0
@@ -203,14 +203,14 @@ healthy 0
 
 . link:scripts/docker_stop.sh[Stop] the container:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/docker_stop.sh
 ----
 
 . link:scripts/docker_cleanup.sh[Remove all Docker artifacts] related to this project:
 +
-[source,shell]
+[,console]
 ----
 $ scripts/docker_cleanup.sh
 ----

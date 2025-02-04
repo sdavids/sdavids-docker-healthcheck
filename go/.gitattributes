@@ -5,4 +5,4 @@
 
 *.go whitespace=indent-with-non-tab,trailing-space,tabwidth=4 diff=golang
 go.mod whitespace=indent-with-non-tab,trailing-space,tabwidth=4
-go.sum -diff linguist-generated=true
+go.sum linguist-generated=true

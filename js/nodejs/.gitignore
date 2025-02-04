@@ -4,10 +4,10 @@
 # https://git-scm.com/docs/gitignore
 
 ### NodeJS ###
-node_modules/
+/node_modules/
 
 ### ESLint ###
 .eslintcache
 
 ### Build ###
-dist/
+/dist/

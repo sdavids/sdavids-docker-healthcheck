@@ -68,22 +68,22 @@ link:shell/nc/README.adoc[shell - nc]:: a nc-based Docker health check for a dae
 
 |<<js-nodejs,JavaScript - Node.js>>
 >|4.0K
-|the `node` binary would add 40.5M
+|the `node` binary would add 41.1M
 
 |<<rust-http,Rust - http>>
->|192.0K
+>|212.0K
 |
 
 |<<rust-https,Rust - https>>
->|484.0K
+>|548.0K
 |
 
 |<<go-http,Go - http>>
->|5.0M
+>|5.2M
 |
 
 |<<go-https,Go - https>>
->|5.0M
+>|5.2M
 |
 
 |<<wget-alpine,wget alpine>>
@@ -111,9 +111,9 @@ link:shell/nc/README.adoc[shell - nc]:: a nc-based Docker health check for a dae
 [,console]
 ----
 $ cd go/http
-$ scripts/docker_build.sh -t go-http
-$ docker run --rm de.sdavids/sdavids-docker-healthcheck:go-http sh -c 'du -kh /usr/local/bin/healthcheck'
-5.0M    /usr/local/bin/healthcheck
+$ scripts/docker_build.sh -p linux/amd64 -t go-http
+$ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:go-http sh -c 'du -kh /usr/local/bin/healthcheck'
+5.2M    /usr/local/bin/healthcheck
 ----
 
 ===== Usage
@@ -126,9 +126,9 @@ link:go/http/README.adoc#usage[Go - http]
 [,console]
 ----
 $ cd go/https
-$ scripts/docker_build.sh -t go-https
-$ docker run --rm de.sdavids/sdavids-docker-healthcheck:go-https sh -c 'du -kh /usr/local/bin/healthcheck'
-5.0M    /usr/local/bin/healthcheck
+$ scripts/docker_build.sh -p linux/amd64 -t go-https
+$ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:go-https sh -c 'du -kh /usr/local/bin/healthcheck'
+5.2M    /usr/local/bin/healthcheck
 ----
 
 ===== Usage
@@ -142,17 +142,17 @@ link:go/https/README.adoc#usage[Go - https]
 
 [NOTE]
 ====
-This healthcheck is only useful in a Node.js Docker image, i.e. an image where the `node` binary already exists--the `node` binary would add 40.5M.
+This healthcheck is only useful in a Node.js Docker image, i.e. an image where the `node` binary already exists--the `node` binary would add 41.1M.
 ====
 
 [,console]
 ----
 $ cd js/nodejs
-$ scripts/docker_build.sh -t js-nodejs
-$ docker run --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /node/healthcheck.mjs'
+$ scripts/docker_build.sh -p linux/amd64 -t js-nodejs
+$ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /node/healthcheck.mjs'
 4.0K    /node/healthcheck.mjs
-$ docker run --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /usr/bin/node'
-40.5M   /usr/bin/node
+$ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /usr/bin/node'
+41.1M   /usr/bin/node
 ----
 
 ===== Usage
@@ -165,9 +165,9 @@ link:js/nodejs/README.adoc#usage[js - nodejs]
 [,console]
 ----
 $ cd rust/http
-$ scripts/docker_build.sh -t rust-http
-$ docker run --rm de.sdavids/sdavids-docker-healthcheck:rust-http sh -c 'du -kh /usr/local/bin/healthcheck'
-192.0K  /usr/local/bin/healthcheck
+$ scripts/docker_build.sh -p linux/amd64 -t rust-http
+$ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:rust-http sh -c 'du -kh /usr/local/bin/healthcheck'
+212.0K  /usr/local/bin/healthcheck
 ----
 
 ==== Usage
@@ -180,9 +180,9 @@ link:rust/http/README.adoc#usage[Rust - http]
 [,console]
 ----
 $ cd rust/https
-$ scripts/docker_build.sh -t rust-https
-$ docker run --rm de.sdavids/sdavids-docker-healthcheck:rust-https sh -c 'du -kh /usr/local/bin/healthcheck'
-484.0K  /usr/local/bin/healthcheck
+$ scripts/docker_build.sh -p linux/amd64 -t rust-https
+$ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:rust-https sh -c 'du -kh /usr/local/bin/healthcheck'
+548.0K  /usr/local/bin/healthcheck
 ----
 
 ==== Usage
@@ -200,8 +200,8 @@ This healthcheck will only check if the daemon's port is reachable, i.e. it will
 [,console]
 ----
 $ cd shell/nc
-$ scripts/docker_build.sh -t shell-nc
-$ docker run --rm de.sdavids/sdavids-docker-healthcheck:shell-nc sh -c 'du -kh /usr/local/bin/healthcheck'
+$ scripts/docker_build.sh -p linux/amd64 -t shell-nc
+$ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:shell-nc sh -c 'du -kh /usr/local/bin/healthcheck'
 4.0K    /usr/local/bin/healthcheck
 ----
 
@@ -216,22 +216,22 @@ link:shell/nc/README.adoc#usage[shell - nc]
 
 [,console]
 ----
-$ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add curl=8.11.1-r0 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
-260.0K  /usr/bin/curl
-652.0K  /usr/lib/libcurl.so.4
-132.0K  /usr/lib/libz.so.1
-708.0K  /lib/ld-musl-aarch64.so.1
-260.0K  /usr/lib/libcares.so.2
-196.0K  /usr/lib/libnghttp2.so.14
+$ docker run --platform=linux/amd64 --rm alpine:3.20.5 sh -c "apk --no-cache --quiet --no-progress add curl=8.12.0-r0 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
+248.0K  /usr/bin/curl
+628.0K  /usr/lib/libcurl.so.4
+100.0K  /lib/libz.so.1
+636.0K  /lib/ld-musl-x86_64.so.1
+156.0K  /usr/lib/libcares.so.2
+140.0K  /usr/lib/libnghttp2.so.14
 196.0K  /usr/lib/libidn2.so.0
-132.0K  /usr/lib/libpsl.so.5
-848.0K  /usr/lib/libssl.so.3
-3.9M    /usr/lib/libcrypto.so.3
-644.0K  /usr/lib/libzstd.so.1
-68.0K   /usr/lib/libbrotlidec.so.1
-1.7M    /usr/lib/libunistring.so.5
-196.0K  /usr/lib/libbrotlicommon.so.1
-9.8M    total
+76.0K   /usr/lib/libpsl.so.5
+780.0K  /lib/libssl.so.3
+4.3M    /lib/libcrypto.so.3
+704.0K  /usr/lib/libzstd.so.1
+56.0K   /usr/lib/libbrotlidec.so.1
+1.6M    /usr/lib/libunistring.so.5
+140.0K  /usr/lib/libbrotlicommon.so.1
+9.7M    total
 ----
 
 [#curl-debian]
@@ -239,39 +239,39 @@ $ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add 
 
 [,console]
 ----
-$ docker run --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq install -y curl=7.88.1-10+deb12u8 >/dev/null 2>&1 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
-324K    /usr/bin/curl
-716K    /lib/aarch64-linux-gnu/libcurl.so.4
-132K    /lib/aarch64-linux-gnu/libz.so.1
-1.6M    /lib/aarch64-linux-gnu/libc.so.6
-196K    /lib/aarch64-linux-gnu/libnghttp2.so.14
-196K    /lib/aarch64-linux-gnu/libidn2.so.0
-116K    /lib/aarch64-linux-gnu/librtmp.so.1
-244K    /lib/aarch64-linux-gnu/libssh2.so.1
-132K    /lib/aarch64-linux-gnu/libpsl.so.5
-720K    /lib/aarch64-linux-gnu/libssl.so.3
-4.3M    /lib/aarch64-linux-gnu/libcrypto.so.3
-328K    /lib/aarch64-linux-gnu/libgssapi_krb5.so.2
-388K    /lib/aarch64-linux-gnu/libldap-2.5.so.0
-68K     /lib/aarch64-linux-gnu/liblber-2.5.so.0
-644K    /lib/aarch64-linux-gnu/libzstd.so.1
-68K     /lib/aarch64-linux-gnu/libbrotlidec.so.1
-1.7M    /lib/aarch64-linux-gnu/libunistring.so.2
-2.2M    /lib/aarch64-linux-gnu/libgnutls.so.30
-324K    /lib/aarch64-linux-gnu/libhogweed.so.6
-324K    /lib/aarch64-linux-gnu/libnettle.so.8
-520K    /lib/aarch64-linux-gnu/libgmp.so.10
-908K    /lib/aarch64-linux-gnu/libkrb5.so.3
-196K    /lib/aarch64-linux-gnu/libk5crypto.so.3
-68K     /lib/aarch64-linux-gnu/libcom_err.so.2
-68K     /lib/aarch64-linux-gnu/libkrb5support.so.0
-132K    /lib/aarch64-linux-gnu/libsasl2.so.2
-132K    /lib/aarch64-linux-gnu/libbrotlicommon.so.1
-1.3M    /lib/aarch64-linux-gnu/libp11-kit.so.0
-132K    /lib/aarch64-linux-gnu/libtasn1.so.6
-68K     /lib/aarch64-linux-gnu/libkeyutils.so.1
-68K     /lib/aarch64-linux-gnu/libresolv.so.2
-68K     /lib/aarch64-linux-gnu/libffi.so.8
+$ docker run --platform=linux/amd64 --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq install -y curl=7.88.1-10+deb12u8 >/dev/null 2>&1 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
+276K    /usr/bin/curl
+696K    /lib/x86_64-linux-gnu/libcurl.so.4
+120K    /lib/x86_64-linux-gnu/libz.so.1
+1.9M    /lib/x86_64-linux-gnu/libc.so.6
+188K    /lib/x86_64-linux-gnu/libnghttp2.so.14
+196K    /lib/x86_64-linux-gnu/libidn2.so.0
+120K    /lib/x86_64-linux-gnu/librtmp.so.1
+256K    /lib/x86_64-linux-gnu/libssh2.so.1
+76K     /lib/x86_64-linux-gnu/libpsl.so.5
+676K    /lib/x86_64-linux-gnu/libssl.so.3
+4.6M    /lib/x86_64-linux-gnu/libcrypto.so.3
+332K    /lib/x86_64-linux-gnu/libgssapi_krb5.so.2
+372K    /lib/x86_64-linux-gnu/libldap-2.5.so.0
+64K     /lib/x86_64-linux-gnu/liblber-2.5.so.0
+748K    /lib/x86_64-linux-gnu/libzstd.so.1
+48K     /lib/x86_64-linux-gnu/libbrotlidec.so.1
+1.8M    /lib/x86_64-linux-gnu/libunistring.so.2
+2.1M    /lib/x86_64-linux-gnu/libgnutls.so.30
+288K    /lib/x86_64-linux-gnu/libhogweed.so.6
+312K    /lib/x86_64-linux-gnu/libnettle.so.8
+520K    /lib/x86_64-linux-gnu/libgmp.so.10
+868K    /lib/x86_64-linux-gnu/libkrb5.so.3
+180K    /lib/x86_64-linux-gnu/libk5crypto.so.3
+20K     /lib/x86_64-linux-gnu/libcom_err.so.2
+52K     /lib/x86_64-linux-gnu/libkrb5support.so.0
+112K    /lib/x86_64-linux-gnu/libsasl2.so.2
+136K    /lib/x86_64-linux-gnu/libbrotlicommon.so.1
+1.3M    /lib/x86_64-linux-gnu/libp11-kit.so.0
+84K     /lib/x86_64-linux-gnu/libtasn1.so.6
+24K     /lib/x86_64-linux-gnu/libkeyutils.so.1
+60K     /lib/x86_64-linux-gnu/libresolv.so.2
+44K     /lib/x86_64-linux-gnu/libffi.so.8
 19M     total
 ----
 
@@ -282,15 +282,15 @@ $ docker run --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq inst
 
 [,console]
 ----
-$ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add wget=1.25.0-r0 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
-468.0K  /usr/bin/wget
-644.0K  /usr/lib/libpcre2-8.so.0
+$ docker run --platform=linux/amd64 --rm alpine:3.20.5 sh -c "apk --no-cache --quiet --no-progress add wget=1.24.5-r0 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
+404.0K  /usr/bin/wget
+680.0K  /usr/lib/libpcre2-8.so.0
 196.0K  /usr/lib/libidn2.so.0
-848.0K  /usr/lib/libssl.so.3
-3.9M    /usr/lib/libcrypto.so.3
-132.0K  /usr/lib/libz.so.1
-708.0K  /lib/ld-musl-aarch64.so.1
-1.7M    /usr/lib/libunistring.so.5
+780.0K  /lib/libssl.so.3
+4.3M    /lib/libcrypto.so.3
+100.0K  /lib/libz.so.1
+636.0K  /lib/ld-musl-x86_64.so.1
+1.6M    /usr/lib/libunistring.so.5
 8.6M    total
 ----
 
@@ -299,22 +299,22 @@ $ docker run --rm alpine:3.21.2 sh -c "apk --no-cache --quiet --no-progress add 
 
 [,console]
 ----
-$ docker run --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq install -y wget=1.21.3-1+b1 >/dev/null 2>&1 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
-520K    /usr/bin/wget
-580K    /lib/aarch64-linux-gnu/libpcre2-8.so.0
-68K     /lib/aarch64-linux-gnu/libuuid.so.1
-196K    /lib/aarch64-linux-gnu/libidn2.so.0
-324K    /lib/aarch64-linux-gnu/libnettle.so.8
-2.2M    /lib/aarch64-linux-gnu/libgnutls.so.30
-132K    /lib/aarch64-linux-gnu/libz.so.1
-132K    /lib/aarch64-linux-gnu/libpsl.so.5
-1.6M    /lib/aarch64-linux-gnu/libc.so.6
-1.7M    /lib/aarch64-linux-gnu/libunistring.so.2
-1.3M    /lib/aarch64-linux-gnu/libp11-kit.so.0
-132K    /lib/aarch64-linux-gnu/libtasn1.so.6
-324K    /lib/aarch64-linux-gnu/libhogweed.so.6
-520K    /lib/aarch64-linux-gnu/libgmp.so.10
-68K     /lib/aarch64-linux-gnu/libffi.so.8
+$ docker run --platform=linux/amd64 --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq install -y wget=1.21.3-1+b2 >/dev/null 2>&1 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
+528K    /usr/bin/wget
+616K    /lib/x86_64-linux-gnu/libpcre2-8.so.0
+36K     /lib/x86_64-linux-gnu/libuuid.so.1
+196K    /lib/x86_64-linux-gnu/libidn2.so.0
+312K    /lib/x86_64-linux-gnu/libnettle.so.8
+2.1M    /lib/x86_64-linux-gnu/libgnutls.so.30
+120K    /lib/x86_64-linux-gnu/libz.so.1
+76K     /lib/x86_64-linux-gnu/libpsl.so.5
+1.9M    /lib/x86_64-linux-gnu/libc.so.6
+1.8M    /lib/x86_64-linux-gnu/libunistring.so.2
+1.3M    /lib/x86_64-linux-gnu/libp11-kit.so.0
+84K     /lib/x86_64-linux-gnu/libtasn1.so.6
+288K    /lib/x86_64-linux-gnu/libhogweed.so.6
+520K    /lib/x86_64-linux-gnu/libgmp.so.10
+44K     /lib/x86_64-linux-gnu/libffi.so.8
 9.7M    total
 ----
 

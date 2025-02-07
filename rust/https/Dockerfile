@@ -75,4 +75,5 @@ LABEL org.opencontainers.image.licenses="Apache-2.0" \
       org.opencontainers.image.vendor="Sebastian Davids" \
       org.opencontainers.image.title="healthcheck-rust-https" \
       de.sdavids.docker.group="sdavids-docker-healthcheck" \
-      de.sdavids.docker.type="development"
+      de.sdavids.docker.type="development" \
+      maintainer="Sebastian Davids <sdavids@gmx.de>"

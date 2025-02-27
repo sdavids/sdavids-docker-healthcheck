@@ -84,7 +84,6 @@ linters:
     - stylecheck
     - tagalign
     - tagliatelle
-    - tenv
     - testableexamples
     - testifylint
     - thelper
@@ -92,6 +91,7 @@ linters:
     - unconvert
     - unparam
     - usestdlibvars
+    - usetesting
     - varnamelen
     - wastedassign
     - whitespace

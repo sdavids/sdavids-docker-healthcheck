@@ -5,7 +5,7 @@
 
 use exitcode::{CONFIG, UNAVAILABLE};
 use minreq::Error::HttpsFeatureNotEnabled;
-use minreq::{get, Response};
+use minreq::{Response, get};
 use std::env;
 use std::process::exit;
 

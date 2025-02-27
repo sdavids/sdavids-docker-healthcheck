@@ -7,7 +7,7 @@ use exitcode::UNAVAILABLE;
 use std::env;
 use std::process::exit;
 
-use minreq::{get, Response};
+use minreq::{Response, get};
 
 // https://docs.rs/minreq/latest/minreq/index.html#timeouts-1
 const TIMEOUT_S: u64 = 5;

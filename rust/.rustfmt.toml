@@ -3,5 +3,6 @@
 
 # https://github.com/rust-lang/rustfmt/blob/master/Configurations.md
 
+style_edition = "2024"
 newline_style = "Unix"
 tab_spaces = 2

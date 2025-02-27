@@ -14,4 +14,6 @@ fi
 
 cd "${base_dir}"
 
-go build -ldflags '-s -w' -o target/healthcheck cmd/healthcheck.go
+# https://pkg.go.dev/cmd/go#hdr-Compile_packages_and_dependencies
+# https://pkg.go.dev/cmd/link
+go build -ldflags '-s -w -B none' -buildvcs=false -o target/healthcheck cmd/healthcheck.go

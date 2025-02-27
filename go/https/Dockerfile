@@ -9,7 +9,7 @@
 ### healthcheck builder ###
 
 # https://hub.docker.com/_/golang/
-FROM golang:1.23.5-alpine3.20 AS healthcheck
+FROM golang:1.24.0-alpine3.20 AS healthcheck
 
 WORKDIR /app
 
@@ -19,7 +19,7 @@ RUN go mod download
 
 COPY cmd cmd
 
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags '-s -w' -o target/healthcheck cmd/healthcheck.go
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags '-s -w -B none' -buildvcs=false -o target/healthcheck cmd/healthcheck.go
 
 LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
       de.sdavids.docker.type="builder"

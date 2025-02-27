@@ -9,9 +9,9 @@
 ### healthcheck builder ###
 
 # https://hub.docker.com/_/rust/
-FROM rust:1.85.0-alpine3.20 AS healthcheck
+FROM rust:1.85.0-alpine3.21 AS healthcheck
 
-RUN apk add --no-cache musl-dev=1.2.5-r1 upx=4.2.4-r0
+RUN apk add --no-cache musl-dev=1.2.5-r9 upx=4.2.4-r0
 
 # https://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-reads
 ENV CARGO_INCREMENTAL=0
@@ -42,7 +42,7 @@ LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
 ### HTTPS server ###
 
 # https://hub.docker.com/_/nginx/
-FROM nginx:1.27.3-alpine3.20-slim AS https_server
+FROM nginx:1.27.4-alpine3.21-slim AS https_server
 
 COPY ca.crt /usr/local/share/ca-certificates/
 

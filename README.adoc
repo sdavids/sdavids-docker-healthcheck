@@ -87,7 +87,7 @@ link:shell/nc/README.adoc[shell - nc]:: a nc-based Docker health check for a dae
 |
 
 |<<wget-alpine,wget alpine>>
->|8.6M
+>|8.7M
 |
 
 |<<wget-debian,wget debian>>
@@ -216,22 +216,22 @@ link:shell/nc/README.adoc#usage[shell - nc]
 
 [,console]
 ----
-$ docker run --platform=linux/amd64 --rm alpine:3.20.5 sh -c "apk --no-cache --quiet --no-progress add curl=8.12.0-r0 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
+$ docker run --platform=linux/amd64 --rm alpine:3.21.3 sh -c "apk --no-cache --quiet --no-progress add curl=8.12.1-r0 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
 248.0K  /usr/bin/curl
 628.0K  /usr/lib/libcurl.so.4
-100.0K  /lib/libz.so.1
-636.0K  /lib/ld-musl-x86_64.so.1
-156.0K  /usr/lib/libcares.so.2
+104.0K  /usr/lib/libz.so.1
+648.0K  /lib/ld-musl-x86_64.so.1
+232.0K  /usr/lib/libcares.so.2
 140.0K  /usr/lib/libnghttp2.so.14
 196.0K  /usr/lib/libidn2.so.0
 76.0K   /usr/lib/libpsl.so.5
-780.0K  /lib/libssl.so.3
-4.3M    /lib/libcrypto.so.3
-704.0K  /usr/lib/libzstd.so.1
+780.0K  /usr/lib/libssl.so.3
+4.3M    /usr/lib/libcrypto.so.3
+700.0K  /usr/lib/libzstd.so.1
 56.0K   /usr/lib/libbrotlidec.so.1
 1.6M    /usr/lib/libunistring.so.5
 140.0K  /usr/lib/libbrotlicommon.so.1
-9.7M    total
+9.8M    total
 ----
 
 [#curl-debian]
@@ -282,16 +282,16 @@ $ docker run --platform=linux/amd64 --rm debian:12.9-slim sh -c "apt-get -qq upd
 
 [,console]
 ----
-$ docker run --platform=linux/amd64 --rm alpine:3.20.5 sh -c "apk --no-cache --quiet --no-progress add wget=1.24.5-r0 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
+$ docker run --platform=linux/amd64 --rm alpine:3.21.3 sh -c "apk --no-cache --quiet --no-progress add wget=1.25.0-r0 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
 404.0K  /usr/bin/wget
-680.0K  /usr/lib/libpcre2-8.so.0
+696.0K  /usr/lib/libpcre2-8.so.0
 196.0K  /usr/lib/libidn2.so.0
-780.0K  /lib/libssl.so.3
-4.3M    /lib/libcrypto.so.3
-100.0K  /lib/libz.so.1
-636.0K  /lib/ld-musl-x86_64.so.1
+780.0K  /usr/lib/libssl.so.3
+4.3M    /usr/lib/libcrypto.so.3
+104.0K  /usr/lib/libz.so.1
+648.0K  /lib/ld-musl-x86_64.so.1
 1.6M    /usr/lib/libunistring.so.5
-8.6M    total
+8.7M    total
 ----
 
 [#wget-debian]

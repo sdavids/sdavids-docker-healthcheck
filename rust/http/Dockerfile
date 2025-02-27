@@ -9,7 +9,7 @@
 ### healthcheck builder ###
 
 # https://hub.docker.com/_/rust/
-FROM rust:1.85.0-alpine3.20 AS healthcheck
+FROM rust:1.85.0-alpine3.21 AS healthcheck
 
 RUN apk add --no-cache upx=4.2.4-r0
 
@@ -38,7 +38,7 @@ LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
 ### HTTP server ###
 
 # https://hub.docker.com/_/nginx/
-FROM nginx:1.27.3-alpine3.20-slim AS http_server
+FROM nginx:1.27.4-alpine3.21-slim AS http_server
 
 RUN mkdir -p /usr/share/nginx/html/-/health && \
     touch /usr/share/nginx/html/-/health/liveness && \

@@ -9,7 +9,7 @@
 ### healthcheck builder ###
 
 # https://hub.docker.com/_/golang/
-FROM golang:1.24.0-alpine3.20 AS healthcheck
+FROM golang:1.24.0-alpine3.21 AS healthcheck
 
 WORKDIR /app
 
@@ -27,7 +27,7 @@ LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
 ### HTTP server ###
 
 # https://hub.docker.com/_/nginx/
-FROM nginx:1.27.3-alpine3.20-slim AS http_server
+FROM nginx:1.27.4-alpine3.21-slim AS http_server
 
 RUN mkdir -p /usr/share/nginx/html/-/health && \
     touch /usr/share/nginx/html/-/health/liveness && \

@@ -9,7 +9,7 @@
 ### Installer ###
 
 # https://hub.docker.com/_/node
-FROM node:22.13.1-alpine3.20 AS installer
+FROM node:22.14.0-alpine3.20 AS installer
 
 RUN apk --no-cache add upx=4.2.4-r0 && \
     upx /usr/local/bin/node
@@ -22,7 +22,7 @@ LABEL de.sdavids.docker.group="sdavids-node-docker-image-slimming" \
 ### Bundler ###
 
 # https://hub.docker.com/_/node
-FROM node:22.13.1-alpine3.20 AS bundler
+FROM node:22.14.0-alpine3.20 AS bundler
 
 WORKDIR /opt/app/
 

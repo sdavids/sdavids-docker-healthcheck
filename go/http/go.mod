@@ -9,5 +9,3 @@ go 1.24
 
 // https://go.dev/doc/devel/release
 toolchain go1.24.0
-
-require github.com/dedelala/sysexits v0.0.0-20170927115716-3d3abae01efc

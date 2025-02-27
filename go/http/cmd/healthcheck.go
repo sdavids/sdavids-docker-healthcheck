@@ -9,8 +9,6 @@ import (
 	"os"
 	"runtime"
 	"time"
-
-	"github.com/dedelala/sysexits"
 )
 
 func main() {
@@ -24,7 +22,7 @@ func main() {
 	res, err := client.Get(url) //nolint:noctx
 	if err != nil {
 		slog.Error("", slog.Any("error", err))
-		os.Exit(sysexits.Unavailable)
+		os.Exit(69) // EX_UNAVAILABLE
 	}
 	defer func() {
 		closeErr := res.Body.Close()
@@ -33,7 +31,7 @@ func main() {
 		}
 	}()
 	if res.StatusCode == http.StatusOK {
-		defer os.Exit(sysexits.OK)
+		defer os.Exit(0) // EX_OK
 	} else {
 		defer os.Exit(100)
 	}

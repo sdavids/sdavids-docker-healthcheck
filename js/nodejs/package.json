@@ -36,13 +36,11 @@
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": ">= 22.14",
-      "onFail": "error"
+      "version": ">= 22.14"
     },
     "packageManager": {
       "name": "npm",
-      "version": ">= 10.9",
-      "onFail": "download"
+      "version": ">= 10.9"
     }
   }
 }

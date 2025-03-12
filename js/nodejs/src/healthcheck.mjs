@@ -9,10 +9,13 @@ import process from 'node:process';
     process.exit(70); // EX_SOFTWARE
   }),
 );
-['SIGINT', 'SIGTERM'].forEach((s) => process.once(s, () => process.exit(0)));
+['SIGINT', 'SIGTERM'].forEach((signal) =>
+  process.on(signal, () => process.exit(0)),
+);
 
 const url =
-  process.env.HEALTHCHECK_URL ?? 'http://localhost:3000/-/health/liveness';
+  // eslint-disable-next-line dot-notation
+  process.env['HEALTHCHECK_URL'] ?? 'http://localhost:3000/-/health/liveness';
 
 try {
   // eslint-disable-next-line no-new

@@ -5,3 +5,6 @@
 
 [*.mjs]
 max_line_length = 80
+
+[*.json]
+max_line_length = 80

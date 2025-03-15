@@ -59,7 +59,7 @@ export default [
     name: 'sdavids/js/defaults',
   },
   {
-    files: ['src/*.mjs'],
+    files: ['**/*.mjs'],
     languageOptions: {
       globals: {
         ...globals.node,

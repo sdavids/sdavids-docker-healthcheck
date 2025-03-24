@@ -23,7 +23,6 @@ Sebastian Davids <sdavids@gmx.de>
 :hadolint-install-url: https://github.com/hadolint/hadolint?tab=readme-ov-file#install
 :nvm-install-url: https://github.com/nvm-sh/nvm#installing-and-updating
 :rust-install-url: https://www.rust-lang.org/learn/get-started
-:uri-contributor-covenant: https://www.contributor-covenant.org
 
 ifdef::env-browser[:outfilesuffix: .adoc]
 
@@ -36,7 +35,6 @@ ifdef::env-github[]
 endif::[]
 
 ifdef::badges[]
-image:https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg[Contributor Covenant,Version 2.1,link={uri-contributor-covenant}]
 image:https://img.shields.io/maintenance/yes/2025[Maintenance]
 image:https://img.shields.io/github/last-commit/sdavids/sdavids-docker-healthcheck[GitHub last commit]
 endif::[]
@@ -313,12 +311,6 @@ $ docker run --platform=linux/amd64 --rm debian:12.9-slim sh -c "apt-get -qq upd
 44K     /lib/x86_64-linux-gnu/libffi.so.8
 9.7M    total
 ----
-
-== Code of Conduct
-
-We abide by the {uri-contributor-covenant}[Contributor Covenant, Version 2.1] and ask that you do as well.
-
-For more information, please see link:CODE_OF_CONDUCT.md[Code of Conduct].
 
 == Development
 

@@ -23,7 +23,6 @@ Sebastian Davids <sdavids@gmx.de>
 :hadolint-install-url: https://github.com/hadolint/hadolint?tab=readme-ov-file#install
 :nvm-install-url: https://github.com/nvm-sh/nvm#installing-and-updating
 :rust-install-url: https://www.rust-lang.org/learn/get-started
-:uri-apache-license: https://www.apache.org/licenses/LICENSE-2.0
 :uri-contributor-covenant: https://www.contributor-covenant.org
 :uri-google-style: https://github.com/google/gts
 
@@ -316,10 +315,6 @@ $ docker run --platform=linux/amd64 --rm debian:12.9-slim sh -c "apt-get -qq upd
 44K     /lib/x86_64-linux-gnu/libffi.so.8
 9.7M    total
 ----
-
-== License
-
-Apache License, Version 2.0 (link:LICENSES/Apache-2.0.txt[Apache-2.0.txt] or {uri-apache-license}).
 
 == Contribution
 

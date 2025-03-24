@@ -316,10 +316,6 @@ $ docker run --platform=linux/amd64 --rm debian:12.9-slim sh -c "apt-get -qq upd
 9.7M    total
 ----
 
-== Contribution
-
-See link:CONTRIBUTING{outfilesuffix}[].
-
 == Code of Conduct
 
 We abide by the {uri-contributor-covenant}[Contributor Covenant, Version 2.1] and ask that you do as well.

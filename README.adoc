@@ -24,7 +24,6 @@ Sebastian Davids <sdavids@gmx.de>
 :nvm-install-url: https://github.com/nvm-sh/nvm#installing-and-updating
 :rust-install-url: https://www.rust-lang.org/learn/get-started
 :uri-contributor-covenant: https://www.contributor-covenant.org
-:uri-google-style: https://github.com/google/gts
 
 ifdef::env-browser[:outfilesuffix: .adoc]
 
@@ -38,7 +37,6 @@ endif::[]
 
 ifdef::badges[]
 image:https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg[Contributor Covenant,Version 2.1,link={uri-contributor-covenant}]
-image:https://img.shields.io/badge/code%20style-google-blueviolet.svg[Code Style: Google,link={uri-google-style}]
 image:https://img.shields.io/maintenance/yes/2025[Maintenance]
 image:https://img.shields.io/github/last-commit/sdavids/sdavids-docker-healthcheck[GitHub last commit]
 endif::[]
@@ -515,8 +513,3 @@ $ sudo apt-get install yamllint
 ----
 $ brew install yamllint
 ----
-
-[#ide]
-=== IDE
-
-See link:CODING_STYLE.adoc#ide-configuration[IDE Configuration].

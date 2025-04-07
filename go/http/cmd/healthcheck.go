@@ -4,6 +4,8 @@
 package main
 
 import (
+	"cmp"
+	"io"
 	"log/slog"
 	"net/http"
 	"os"
@@ -12,24 +14,18 @@ import (
 )
 
 func main() {
-	url, exists := os.LookupEnv("HEALTHCHECK_URL")
-	if !exists {
-		url = "http://localhost:3000/-/health/liveness"
-	}
+	url := cmp.Or(os.Getenv("HEALTHCHECK_URL"), "http://localhost:3000/-/health/liveness")
 	client := &http.Client{
 		Timeout: time.Second * 5,
 	}
-	res, err := client.Get(url) //nolint:noctx
+	res, err := client.Get(url) //nolint
 	if err != nil {
 		slog.Error("", slog.Any("error", err))
 		os.Exit(69) // EX_UNAVAILABLE
 	}
-	defer func() {
-		closeErr := res.Body.Close()
-		if closeErr != nil {
-			err = closeErr
-		}
-	}()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(res.Body)
 	if res.StatusCode == http.StatusOK {
 		defer os.Exit(0) // EX_OK
 	} else {

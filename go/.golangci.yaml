@@ -4,11 +4,13 @@
 
 # https://golangci-lint.run/usage/configuration/#config-file
 
+version: "2"
 output:
   formats:
-    - format: line-number
+    text:
+      path: stdout
 linters:
-  disable-all: true
+  default: none
   # https://golangci-lint.run/usage/linters/
   enable:
     - asasalint
@@ -17,11 +19,9 @@ linters:
     - bodyclose
     - containedctx
     - contextcheck
-    - cyclop
     - decorder
     - depguard
     - dogsled
-    - dupl
     - dupword
     - durationcheck
     - errchkjson
@@ -29,22 +29,15 @@ linters:
     - errorlint
     - exhaustive
     - forcetypeassert
-    - gci
     - ginkgolinter
     - gocheckcompilerdirectives
     - gochecknoglobals
     - gochecknoinits
     - gochecksumtype
-    - gocognit
     - goconst
     - gocritic
     - gocyclo
-    - godot
-    - godox
-    - gofmt
-    - gofumpt
     - goheader
-    - goimports
     - gomoddirectives
     - goprintffuncname
     - gosec
@@ -54,13 +47,11 @@ linters:
     - importas
     - inamedparam
     - interfacebloat
-    - ireturn
     - loggercheck
     - maintidx
     - makezero
     - mirror
     - misspell
-    - musttag
     - nakedret
     - nestif
     - nilerr
@@ -81,7 +72,7 @@ linters:
     - sloglint
     - spancheck
     - sqlclosecheck
-    - stylecheck
+    - staticcheck
     - tagalign
     - tagliatelle
     - testableexamples
@@ -92,28 +83,47 @@ linters:
     - unparam
     - usestdlibvars
     - usetesting
-    - varnamelen
     - wastedassign
     - whitespace
     - wrapcheck
     - zerologlint
-linters-settings:
-  depguard:
-    rules:
-      prevent_unmaintained_packages:
-        list-mode: strict
-        files:
-          - $all
-        allow:
-          - $gostd
-          - sdavids.de
-          - github.com/dedelala/sysexits
-        deny:
-          - pkg: io/ioutil
-            desc: >-
-              replaced by io and os packages since Go 1.16:
-              https://tip.golang.org/doc/go1.16#ioutil
-  errorlint:
-    errorf: false
-  paralleltest:
-    ignore-missing: true
+  settings:
+    depguard:
+      rules:
+        prevent_unmaintained_packages:
+          list-mode: strict
+          files:
+            - $all
+          allow:
+            - $gostd
+          deny:
+            - pkg: io/ioutil
+              desc: >-
+                replaced by io and os packages since Go 1.16:
+                https://tip.golang.org/doc/go1.16#ioutil
+    errorlint:
+      errorf: false
+    paralleltest:
+      ignore-missing: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

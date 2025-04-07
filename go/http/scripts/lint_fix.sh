@@ -6,7 +6,6 @@
 # golangci-lint needs to be in $PATH
 #
 # https://golangci-lint.run/usage/quick-start
-# https://github.com/golangci/golangci-lint/issues/2654#issuecomment-1606439587
 
 set -eu
 
@@ -19,4 +18,4 @@ fi
 
 cd "${base_dir}"
 
-go list -f '{{.Dir}}/...' -m | xargs golangci-lint run --fix
+golangci-lint run --fix

@@ -9,7 +9,7 @@
 ### healthcheck builder ###
 
 # https://hub.docker.com/_/rust/
-FROM rust:1.85.1-alpine3.21 AS healthcheck
+FROM rust:1.86.0-alpine3.21 AS healthcheck
 
 RUN apk add --no-cache upx=4.2.4-r0
 

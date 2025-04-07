@@ -7,7 +7,7 @@
 name = "sdavids-docker-healthcheck-rust-http"
 version = "1.0.0"
 edition = "2024"
-rust-version = "1.85.1"
+rust-version = "1.86.0"
 authors = ["Sebastian Davids <sdavids@gmx.de>"]
 description = "A Docker health check for an HTTP URL passed in via ENV"
 homepage = "https://github.com/sdavids/sdavids-docker-healthcheck"

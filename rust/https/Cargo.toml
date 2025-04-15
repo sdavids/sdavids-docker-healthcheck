@@ -31,4 +31,4 @@ strip = "symbols"
 
 [dependencies]
 exitcode = "1.1.2"
-minreq = { version = "2.13.3", features = ["https-rustls-probe"] }
+minreq = { version = "2.13.4", features = ["https-rustls-probe"] }

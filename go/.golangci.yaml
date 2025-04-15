@@ -29,6 +29,7 @@ linters:
     - errorlint
     - exhaustive
     - forcetypeassert
+    - funcorder
     - ginkgolinter
     - gocheckcompilerdirectives
     - gochecknoglobals

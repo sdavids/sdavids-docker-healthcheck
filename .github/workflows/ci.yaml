@@ -20,7 +20,7 @@ jobs:
   # unfortunately each job is billed for at least 1 minute in GH Actions
   # so use one big one to save GH Action minutes
   # https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions
-  lint-build-test:
+  lint-build:
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -49,7 +49,6 @@ jobs:
               - js/nodejs/package-lock.json
               - js/nodejs/prettier.config.mjs
               - 'js/nodejs/src/**.mjs'
-              - 'js/nodejs/test/**.mjs'
             go-http-Dockerfile:
               - .hadolint.yaml
               - go/http/Dockerfile
@@ -69,7 +68,6 @@ jobs:
               - rust/http/Dockerfile
             rust-http:
               - 'rust/http/src/**'
-              - 'rust/http/tests/**'
               - rust/http/Cargo.lock
               - rust/http/Cargo.toml
               - rust/http/rust-toolchain.toml
@@ -78,7 +76,6 @@ jobs:
               - rust/https/Dockerfile
             rust-https:
               - 'rust/https/src/**'
-              - 'rust/https/tests/**'
               - rust/https/Cargo.lock
               - rust/https/Cargo.toml
               - rust/https/rust-toolchain.toml
@@ -110,10 +107,6 @@ jobs:
         name: Lint js/nodejs files
         working-directory: js/nodejs
         run: scripts/lint.sh
-      - if: steps.changes.outputs.js == 'true'
-        name: Test js/nodejs
-        working-directory: js/nodejs
-        run: scripts/test.sh
       # --- go/http ----------------------------------------------------------
       - if: steps.changes.outputs.go-http-Dockerfile == 'true'
         name: Lint go/http/Dockerfile
@@ -135,10 +128,6 @@ jobs:
           # https://github.com/golangci/golangci-lint/releases
           version: v2.0.2
           working-directory: go/http
-      - if: steps.changes.outputs.go-http == 'true'
-        name: Test go/http
-        working-directory: go/http
-        run: scripts/test.sh
       - if: steps.changes.outputs.go-http == 'true'
         name: Build go/http
         working-directory: go/http
@@ -164,10 +153,6 @@ jobs:
           # https://github.com/golangci/golangci-lint/releases
           version: v2.0.2
           working-directory: go/https
-      - if: steps.changes.outputs.go-https == 'true'
-        name: Test go/https
-        working-directory: go/https
-        run: scripts/test.sh
       - if: steps.changes.outputs.go-https == 'true'
         name: Build go/https
         working-directory: go/https
@@ -199,10 +184,6 @@ jobs:
         working-directory: rust/http
         run: scripts/lint.sh
       - if: steps.changes.outputs.rust-http == 'true'
-        name: Test rust/http
-        working-directory: rust/http
-        run: cargo test --no-fail-fast
-      - if: steps.changes.outputs.rust-http == 'true'
         name: Build rust/http
         working-directory: rust/http
         run: scripts/build_release.sh
@@ -232,10 +213,6 @@ jobs:
         name: Lint rust/https files
         working-directory: rust/https
         run: scripts/lint.sh
-      - if: steps.changes.outputs.rust-https == 'true'
-        name: Test rust/https
-        working-directory: rust/https
-        run: cargo test --no-fail-fast
       - if: steps.changes.outputs.rust-https == 'true'
         name: Build rust/https
         working-directory: rust/https

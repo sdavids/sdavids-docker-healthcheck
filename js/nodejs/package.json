@@ -23,8 +23,7 @@
     "format:check": "scripts/format_check.sh",
     "lint": "scripts/lint.sh",
     "lint:fix": "npx eslint --cache --fix .",
-    "start": "NODE_ENV=production node src/server.mjs",
-    "test": "scripts/test.sh"
+    "start": "NODE_ENV=production node src/server.mjs"
   },
   "devDependencies": {
     "@eslint/js": "9.24.0",

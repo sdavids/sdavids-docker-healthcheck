@@ -23,6 +23,5 @@ eslint.config.mjs
 node_modules/
 prettier.config.mjs
 scripts/
-test/
 
 !scripts/build.sh

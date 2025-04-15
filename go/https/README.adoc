@@ -69,13 +69,6 @@ $ scripts/build.sh
 
 => `target/healthcheck`
 
-=== Test
-
-[,console]
-----
-$ scripts/test.sh
-----
-
 === Run
 
 [,console]

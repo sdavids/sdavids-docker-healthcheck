@@ -42,7 +42,7 @@ LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
 ### HTTPS server ###
 
 # https://hub.docker.com/_/nginx/
-FROM nginx:1.27.4-alpine3.21-slim AS https_server
+FROM nginx:1.28.0-alpine3.21-slim AS https_server
 
 COPY ca.crt /usr/local/share/ca-certificates/
 

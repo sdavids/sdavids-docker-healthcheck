@@ -9,7 +9,7 @@
 ### HTTP server ###
 
 # https://hub.docker.com/_/nginx/
-FROM nginx:1.27.4-alpine3.21-slim AS http_server
+FROM nginx:1.28.0-alpine3.21-slim AS http_server
 
 RUN mkdir -p /usr/share/nginx/html/-/health && \
     touch /usr/share/nginx/html/-/health/liveness && \

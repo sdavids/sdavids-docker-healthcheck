@@ -6,40 +6,38 @@
 
 # https://docs.docker.com/engine/reference/builder/
 
-### Installer ###
+### Node ###
 
 # https://hub.docker.com/_/node
-FROM node:22.15.0-alpine3.21 AS installer
+FROM node:22.15.0-alpine3.21 AS node
 
 RUN apk --no-cache add upx=4.2.4-r0 && \
     upx /usr/local/bin/node
 
-WORKDIR /opt/app/
-
-LABEL de.sdavids.docker.group="sdavids-node-docker-image-slimming" \
+LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
       de.sdavids.docker.type="builder"
 
-### Bundler ###
+### Builder ###
 
 # https://hub.docker.com/_/node
-FROM node:22.15.0-alpine3.21 AS bundler
+FROM node:22.15.0-alpine3.21 AS builder
 
-WORKDIR /opt/app/
+WORKDIR /node
 
 COPY scripts/build.sh scripts/
 COPY package.json package-lock.json ./
 
-RUN npm config set ignore-scripts true && \
-    npm ci --omit optional --omit peer --audit-level=high --silent && \
-    node node_modules/esbuild/install.js && \
-    npm cache clean --force
+RUN npm ci --ignore-scripts --omit dev --omit optional --omit peer --audit-level=high --silent
 
-COPY src/server.mjs src/healthcheck.mjs src/
+COPY src src
 
 RUN node --run build && \
-    chmod 400 /opt/app/dist/server.mjs /opt/app/dist/healthcheck.mjs
+    find dist -type f ! -name '*.mjs' -delete && \
+    find dist -type d -empty -delete && \
+    find dist -type d -exec chmod 500 {} + && \
+    find dist -type f -exec chmod 400 {} +
 
-LABEL de.sdavids.docker.group="sdavids-node-docker-image-slimming" \
+LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
       de.sdavids.docker.type="builder"
 
 ### Harden ###
@@ -119,11 +117,12 @@ ENV TMPDIR=/node/tmp
 
 FROM hardened
 
+COPY --from=node --chown=node:node /usr/local/bin/node /usr/bin/
+COPY --from=node --chown=node:node /usr/lib/libgcc_s.so.1 /usr/lib/libstdc++.so.6 /usr/lib/
+
 WORKDIR /node
 
-COPY --from=installer --chown=node:node /usr/lib/libgcc_s.so.1 /usr/lib/libstdc++.so.6 /usr/lib/
-COPY --from=installer --chown=node:node /usr/local/bin/node /usr/bin/
-COPY --from=bundler --chown=node:node /opt/app/dist/server.mjs /opt/app/dist/healthcheck.mjs ./
+COPY --from=builder --chown=node:node /node/dist ./
 
 ENV NODE_ENV=production
 ENV PORT=3000
@@ -135,7 +134,7 @@ EXPOSE 3000
 CMD ["node", "server.mjs"]
 
 HEALTHCHECK --interval=5s --timeout=5s --start-period=5s \
-    CMD node --no-warnings /node/healthcheck.mjs
+    CMD node /node/healthcheck.mjs
 
 # https://github.com/opencontainers/image-spec/blob/master/annotations.md
 LABEL org.opencontainers.image.licenses="Apache-2.0" \

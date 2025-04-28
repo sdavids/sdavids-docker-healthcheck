@@ -125,7 +125,7 @@ COPY src/healthcheck.mjs /node/
 [,dockerfile]
 ----
 HEALTHCHECK --interval=5s --timeout=5s --start-period=5s \
-    CMD node --no-warnings /node/healthcheck.mjs
+    CMD node /node/healthcheck.mjs
 ----
 +
 More information:

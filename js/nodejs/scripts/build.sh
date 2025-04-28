@@ -20,7 +20,7 @@ readonly dir="${base_dir}/dist"
 rm -rf "${dir}"
 
 if [ ! -d 'node_modules' ]; then
-  npm ci --ignore-scripts=false --fund=false
+  npm ci --silent --ignore-scripts=true --fund=false
 fi
 
 npx --yes --quiet \

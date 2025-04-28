@@ -66,7 +66,7 @@ The health check calls the URL from within the container therefore `localhost` i
 
 [,console]
 ----
-$ npm install --no-ignore-scripts
+$ npm i --no-ignore-scripts
 ----
 
 === Run

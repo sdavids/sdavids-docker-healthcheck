@@ -52,7 +52,7 @@ link:shell/nc/README.adoc[shell - nc]:: a nc-based Docker health check for a dae
 
 |<<shell-nc,shell - nc>>
 >|4.0K
-|only checks the daemon's port
+|only check the daemon's port
 
 |<<js-nodejs,JavaScript - Node.js>>
 >|4.0K
@@ -130,7 +130,7 @@ link:go/https/README.adoc#usage[Go - https]
 
 [NOTE]
 ====
-This healthcheck is only useful in a Node.js Docker image, i.e. an image where the `node` binary already exists--the `node` binary would add 41.2M.
+This healthcheck is only useful in a Node.js Docker image, i.e., an image where the `node` binary already exists--the `node` binary would add 41.2M.
 ====
 
 [,console]
@@ -182,7 +182,7 @@ link:rust/https/README.adoc#usage[Rust - https]
 
 [NOTE]
 ====
-This healthcheck will only check if the daemon's port is reachable, i.e. it will not check the HTTP body or status code of the response.
+This healthcheck will only check if the daemon's port is reachable, i.e., it will not check the HTTP body or status code of the response.
 ====
 
 [,console]
@@ -326,7 +326,7 @@ $ scripts/lint.sh
 
 [IMPORTANT]
 ====
-After initializing this repository you need to install the Git hooks via:
+After initializing this repository, you need to install the Git hooks via:
 
 [,console]
 ----

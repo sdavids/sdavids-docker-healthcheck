@@ -177,7 +177,7 @@ link:Dockerfile[Dockerfile]: a simple HTTPS server
 +
 [,console]
 ----
-$ scripts/create_self_signed_cert.sh
+$ scripts/create_self_signed_cert.sh -d certs
 ----
 
 . link:scripts/docker_build.sh[Build] the image:
@@ -234,5 +234,5 @@ $ scripts/docker_cleanup.sh
 +
 [,console]
 ----
-$ scripts/delete_self_signed_cert.sh
+$ scripts/delete_self_signed_cert.sh -d certs
 ----

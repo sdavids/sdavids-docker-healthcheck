@@ -25,6 +25,19 @@ readonly host_name='localhost'
 
 readonly network_name="${repository}"
 
+secrets_dir="$PWD/certs"
+
+if [ ! -d "${secrets_dir}" ]; then
+  printf "secrets directory '%s' does not exist\n\nExecute 'scripts/create_self_signed_cert.sh' then execute this script again.\n" "${secrets_dir}" >&2
+  exit 1
+fi
+
+# https://github.com/devcontainers/features/tree/main/src/docker-outside-of-docker#1-use-the-localworkspacefolder-as-environment-variable-in-your-code
+if [ -n "${LOCAL_WORKSPACE_FOLDER+x}" ]; then
+  secrets_dir="${LOCAL_WORKSPACE_FOLDER}/certs"
+fi
+readonly secrets_dir
+
 docker network inspect "${network_name}" >/dev/null 2>&1 \
   || docker network create \
     --driver bridge "${network_name}" \
@@ -43,8 +56,8 @@ docker container run \
   --cap-drop=all \
   --network="${network_name}" \
   --publish "${https_port}:3000" \
-  --volume "$PWD/cert.pem:/etc/ssl/certs/server.crt:ro" \
-  --volume "$PWD/key.pem:/etc/ssl/private/server.key:ro" \
+  --volume "${secrets_dir}/cert.pem:/etc/ssl/certs/server.crt:ro" \
+  --volume "${secrets_dir}/key.pem:/etc/ssl/private/server.key:ro" \
   --name "${container_name}" \
   --label "${label}" \
   "${image_name}:${tag}" >/dev/null

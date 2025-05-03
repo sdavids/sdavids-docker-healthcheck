@@ -33,7 +33,7 @@ The response body is not evaluated.
 
 [IMPORTANT]
 ====
-Only HTTP URLs are supported, i.e. HTTPS redirects are not supported.
+Only HTTP URLs are supported, i.e., HTTPS redirects are not supported.
 ====
 
 [TIP]

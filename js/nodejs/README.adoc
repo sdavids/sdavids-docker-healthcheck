@@ -35,9 +35,9 @@ The response body is not evaluated.
 ====
 HTTP, HTTP with HTTPS redirect, and HTTPS URLs are supported.
 
-For security reasons only 3 redirects is followed.
+For security reasons, only three redirects are followed.
 
-Modify the healthcheck to increase the number of redirects:
+Modify the health check to increase the number of redirects:
 
 .src/healthcheck.mjs
 [,javascript]
@@ -90,7 +90,7 @@ $ echo $?
 64:: the health check URL was invalid
 69:: the maximum number of redirects has been exceeded
 70:: the health check had an internal software error
-76:: the service at the given healthcheck URL uses a self-signed certificate or a certificate with an invalid certificate chain
+76:: the service at the given health check URL uses a self-signed certificate or a certificate with an invalid certificate chain
 78:: the Node.js runtime does not support HTTPS
 100:: the health check URL did not return HTTP 200
 
@@ -243,7 +243,7 @@ $ scripts/create_ca.sh
 $ scripts/copy_ca_root_cert.sh
 ----
 
-.. link:scripts/copy_ca_root_cert.sh[Copy] the existing certificate authorities root certificate:
+.. link:scripts/copy_ca_root_cert.sh[Copy] the existing certificate-authorities root certificate:
 +
 [,console]
 ----
@@ -291,7 +291,7 @@ The URL has been copied to the clipboard.
 ====
 If you see `Listen local: http://localhost:3000` instead:
 
-Either `cert.pem` or `key.pem` could not be read; try creating the <<localhost-cert, localhost certificate>> again.
+Either `cert.pem` or `key.pem` could not be read; try creating the <<localhost-cert,localhost certificate>> again.
 ====
 
 . Examine the two endpoints:

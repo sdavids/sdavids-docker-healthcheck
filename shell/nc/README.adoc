@@ -22,13 +22,13 @@ endif::[]
 
 toc::[]
 
-An https://www.boxmatrix.info/wiki/Property:nc[nc]-based Docker health check for a daemon port.
+A https://www.boxmatrix.info/wiki/Property:nc[nc]-based Docker health check for a daemon port.
 
 [IMPORTANT]
 ====
 The port is probed for a daemon listening.
 
-No request is sent therefore no response body or status is evaluated.
+No request is sent; therefore, no response body or status is evaluated.
 ====
 
 This health check uses the port passed in via the following ENV variable:

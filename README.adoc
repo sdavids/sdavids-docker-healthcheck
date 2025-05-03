@@ -37,12 +37,12 @@ toc::[]
 
 Available Docker health checks:
 
-link:go/http/README.adoc[Go - http]:: a Go-based Docker health check for an HTTP URL
-link:go/https/README.adoc[Go - https]:: a Go-based Docker health check for an HTTP(S) URL
-link:js/nodejs/README.adoc/[JavaScript - Node.js]:: a Node.js-based Docker health check for an HTTP(S) URL
-link:rust/http/README.adoc[Rust - http]:: a Rust-based Docker health check for an HTTP URL
-link:rust/https/README.adoc[Rust - https]:: a Rust-based Docker health check for an HTTP(S) URL
-link:shell/nc/README.adoc[shell - nc]:: a nc-based Docker health check for a daemon port
+link:go/http/README.adoc[Go http]:: a Go-based Docker health check for an HTTP URL
+link:go/https/README.adoc[Go https]:: a Go-based Docker health check for an HTTP(S) URL
+link:js/nodejs/README.adoc/[JavaScript Node.js]:: a Node.js-based Docker health check for an HTTP(S) URL
+link:rust/http/README.adoc[Rust http]:: a Rust-based Docker health check for an HTTP URL
+link:rust/https/README.adoc[Rust https]:: a Rust-based Docker health check for an HTTP(S) URL
+link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemon port
 
 == Size Comparison
 
@@ -50,27 +50,27 @@ link:shell/nc/README.adoc[shell - nc]:: a nc-based Docker health check for a dae
 |===
 |Program |Size |Notes
 
-|<<shell-nc,shell - nc>>
+|<<shell-nc,shell nc>>
 >|4.0K
 |only check the daemon's port
 
-|<<js-nodejs,JavaScript - Node.js>>
+|<<js-nodejs,JavaScript Node.js>>
 >|4.0K
 |the `node` binary would add 41.2M
 
-|<<rust-http,Rust - http>>
+|<<rust-http,Rust http>>
 >|212.0K
 |
 
-|<<rust-https,Rust - https>>
+|<<rust-https,Rust https>>
 >|548.0K
 |
 
-|<<go-http,Go - http>>
+|<<go-http,Go http>>
 >|5.6M
 |
 
-|<<go-https,Go - https>>
+|<<go-https,Go https>>
 >|5.6M
 |
 
@@ -94,7 +94,7 @@ link:shell/nc/README.adoc[shell - nc]:: a nc-based Docker health check for a dae
 === Go
 
 [#go-http]
-==== Go - http
+==== Go http
 
 [,console]
 ----
@@ -106,10 +106,10 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:g
 
 ===== Usage
 
-link:go/http/README.adoc#usage[Go - http]
+link:go/http/README.adoc#usage[Go http]
 
 [#go-https]
-==== Go - https
+==== Go https
 
 [,console]
 ----
@@ -121,7 +121,7 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:g
 
 ===== Usage
 
-link:go/https/README.adoc#usage[Go - https]
+link:go/https/README.adoc#usage[Go https]
 
 === JavaScript
 
@@ -130,7 +130,7 @@ link:go/https/README.adoc#usage[Go - https]
 
 [NOTE]
 ====
-This healthcheck is only useful in a Node.js Docker image, i.e., an image where the `node` binary already exists--the `node` binary would add 41.2M.
+This health check is only useful in a Node.js Docker image, i.e., an image where the `node` binary already exists--the `node` binary would add 41.2M.
 ====
 
 [,console]
@@ -148,7 +148,7 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:j
 link:js/nodejs/README.adoc#usage[js - nodejs]
 
 [#rust-http]
-=== Rust - http
+=== Rust http
 
 [,console]
 ----
@@ -160,10 +160,10 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:r
 
 ==== Usage
 
-link:rust/http/README.adoc#usage[Rust - http]
+link:rust/http/README.adoc#usage[Rust http]
 
 [#rust-https]
-=== Rust - https
+=== Rust https
 
 [,console]
 ----
@@ -175,14 +175,14 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:r
 
 ==== Usage
 
-link:rust/https/README.adoc#usage[Rust - https]
+link:rust/https/README.adoc#usage[Rust https]
 
 [#shell-nc]
-=== shell - nc
+=== shell nc
 
 [NOTE]
 ====
-This healthcheck will only check if the daemon's port is reachable, i.e., it will not check the HTTP body or status code of the response.
+This health check will only check if the daemon's port is reachable, i.e., it will not check the HTTP body or status code of the response.
 ====
 
 [,console]
@@ -195,7 +195,7 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:s
 
 ==== Usage
 
-link:shell/nc/README.adoc#usage[shell - nc]
+link:shell/nc/README.adoc#usage[shell nc]
 
 === curl
 

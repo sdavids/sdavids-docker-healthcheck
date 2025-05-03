@@ -159,7 +159,7 @@ Alternatively, add the `HEALTHCHECK_URL` to the `Dockerfile`:
 ENV HEALTHCHECK_URL="https://localhost:3000/-/health/liveness"
 ----
 
-. (Optional) If you have an `https` healthcheck URL with a custom certificate authority you need to add the certificate authorities root certificate to your image; for example for https://hub.docker.com/_/alpine/[Alpine-based] images:
+. (Optional) If you have an `https` healthcheck URL with a custom certificate authority you need to add the certificate authorities root certificate to your image; for example, for https://hub.docker.com/_/alpine/[Alpine-based] images:
 +
 [,dockerfile]
 ----
@@ -184,7 +184,7 @@ $ scripts/create_ca.sh
 $ scripts/copy_ca_root_cert.sh
 ----
 
-.. link:scripts/copy_ca_root_cert.sh[Copy] the existing certificate authorities root certificate:
+.. link:scripts/copy_ca_root_cert.sh[Copy] the existing certificate-authorities root certificate:
 +
 [,console]
 ----

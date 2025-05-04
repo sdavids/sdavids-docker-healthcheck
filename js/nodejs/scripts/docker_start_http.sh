@@ -5,7 +5,7 @@
 
 set -eu
 
-readonly https_port="${1:-3000}"
+readonly http_port="${1:-3000}"
 
 readonly tag='local'
 
@@ -37,13 +37,13 @@ docker container run \
   --rm \
   --detach \
   --security-opt='no-new-privileges=true' \
-  --publish "${https_port}:3000" \
+  --publish "${http_port}:3000" \
   --network="${network_name}" \
   --name "${container_name}" \
   --label "${label}" \
   "${image_name}:${tag}" >/dev/null
 
-readonly url="http://${host_name}:${https_port}"
+readonly url="http://${host_name}:${http_port}"
 
 printf '\nListen local: %s\n' "${url}"
 

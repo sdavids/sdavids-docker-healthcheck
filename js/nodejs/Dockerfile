@@ -32,7 +32,8 @@ RUN npm ci --ignore-scripts=true --omit=dev --omit=optional --omit=peer
 COPY src src
 
 RUN node --run build && \
-    find dist -type f ! -name '*.mjs' -delete && \
+# keep only JavaScript/JSON files and harden permissions
+    find dist -type f ! \( -name '*.cjs' -o -name '*.js' -o -name '*.json' -o -name '*.mjs' \) -delete && \
     find dist -type d -empty -delete && \
     find dist -type d -exec chmod 500 {} + && \
     find dist -type f -exec chmod 400 {} +

@@ -22,7 +22,7 @@
     "format": "scripts/format.sh",
     "format:check": "scripts/format_check.sh",
     "lint": "scripts/lint.sh",
-    "lint:fix": "npx eslint --cache --fix .",
+    "lint:fix": "scripts/lint_fix.sh",
     "start": "NODE_ENV=production node src/server.mjs"
   },
   "devDependencies": {

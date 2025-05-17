@@ -13,7 +13,6 @@ Thumbs.db
 
 *.adoc
 .dockerignore
-.eslintcache
 .gitignore
 .prettierignore
 .husky/

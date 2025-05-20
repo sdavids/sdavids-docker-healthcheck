@@ -23,7 +23,7 @@ readonly container_name='sdavids-docker-healthcheck-go-https'
 
 readonly host_name='localhost'
 
-readonly network_name="${repository}"
+readonly network_name='sdavids_docker_healthcheck'
 
 secrets_dir="$PWD/certs"
 

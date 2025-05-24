@@ -12,6 +12,13 @@ import { flatConfigs as importConfigs } from "eslint-plugin-import-x";
 // noinspection JSUnusedGlobalSymbols
 export default [
   {
+    linterOptions: {
+      reportUnusedDisableDirectives: "error",
+      reportUnusedInlineConfigs: "error",
+    },
+    name: "global/report-unused",
+  },
+  {
     ignores: ["dist/*"],
     name: "global/ignores",
   },

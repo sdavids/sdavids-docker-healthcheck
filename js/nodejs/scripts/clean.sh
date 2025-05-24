@@ -7,8 +7,8 @@ set -eu
 
 readonly base_dir="${1:-$PWD}"
 
-readonly eslint_cache_file="${base_dir}/node_modules/.cache/eslint/.eslintcache"
-readonly prettier_cache_file="${base_dir}/node_modules/.cache/prettier/.prettier-cache"
+readonly eslint_cache_dir="${base_dir}/node_modules/.cache/eslint"
+readonly prettier_cache_dir="${base_dir}/node_modules/.cache/prettier"
 
-rm -rf "${eslint_cache_file}" \
-  "${prettier_cache_file}"
+rm -rf "${eslint_cache_dir}" \
+  "${prettier_cache_dir}"

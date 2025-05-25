@@ -69,11 +69,11 @@ fi
 
 if command -v hadolint >/dev/null 2>&1; then
   # https://github.com/hadolint/hadolint#cli
-  hadolint --no-color go/http/Dockerfile
-  hadolint --no-color go/https/Dockerfile
-  hadolint --no-color js/nodejs/Dockerfile
-  hadolint --no-color rust/http/Dockerfile
-  hadolint --no-color rust/https/Dockerfile
+  hadolint go/http/Dockerfile
+  hadolint go/https/Dockerfile
+  hadolint js/nodejs/Dockerfile
+  hadolint rust/http/Dockerfile
+  hadolint rust/https/Dockerfile
 fi
 
 scripts/format_check.sh .

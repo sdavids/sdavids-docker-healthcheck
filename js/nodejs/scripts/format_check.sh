@@ -18,4 +18,4 @@ if [ ! -d 'node_modules' ]; then
   npm ci --silent --ignore-scripts=true --fund=false
 fi
 
-npx --yes --quiet prettier --log-level warn --cache --check .
+npx --yes --quiet prettier --cache --check .

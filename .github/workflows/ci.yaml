@@ -85,6 +85,9 @@ jobs:
               - rust/https/Cargo.toml
               - rust/https/rust-toolchain.toml
       - if: steps.changes.outputs.sh == 'true'
+        name: Check shell script formatting
+        run: scripts/shellscript_format_check.sh
+      - if: steps.changes.outputs.sh == 'true'
         name: Lint shell scripts
         run: scripts/shellscript_check.sh
       - if: steps.changes.outputs.yaml == 'true'

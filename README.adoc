@@ -167,12 +167,30 @@ link:rust/http/README.adoc#usage[Rust http]
 [#rust-https]
 ==== https
 
+[NOTE]
+====
+
+You need to create a certificate authority and its root certificate:
+
 [,console]
 ----
 $ cd rust/https
 $ scripts/create_ca.sh
 $ scripts/copy_ca_root_cert.sh
-$ scripts/create_ca_based_cert.sh
+----
+
+Or copy an existing root certificate:
+
+[,console]
+----
+$ cd rust/https
+$ scripts/copy_ca_root_cert.sh
+----
+====
+
+[,console]
+----
+$ cd rust/https
 $ scripts/docker_build.sh -p linux/amd64 -t rust-https
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:rust-https sh -c 'du -kh /usr/local/bin/healthcheck'
 548.0K  /usr/local/bin/healthcheck

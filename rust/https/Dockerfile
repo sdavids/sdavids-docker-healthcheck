@@ -20,7 +20,7 @@ WORKDIR /tmp
 
 # https://stackoverflow.com/a/58474618
 RUN mkdir src && \
-    echo "fn main() {}" > src/main.rs
+    echo "fn main() {}" >src/main.rs
 
 COPY rust-toolchain.toml ./
 
@@ -51,8 +51,8 @@ RUN apk add --no-cache ca-certificates && \
     update-ca-certificates && \
     mkdir -p /usr/share/nginx/html/-/health && \
     touch /usr/share/nginx/html/-/health/liveness && \
-    printf '<!doctype html><title>sdavids-docker-healthcheck-rust-https</title><h1>sdavids-docker-healthcheck-rust-https</h1>' > /usr/share/nginx/html/index.html && \
-    printf 'server {listen 3000 ssl;listen [::]:3000 ssl;ssl_certificate /etc/ssl/certs/server.crt;ssl_certificate_key /etc/ssl/private/server.key;location / {root /usr/share/nginx/html;index index.html;}}' > /etc/nginx/conf.d/default.conf
+    printf '<!doctype html><title>sdavids-docker-healthcheck-rust-https</title><h1>sdavids-docker-healthcheck-rust-https</h1>' >/usr/share/nginx/html/index.html && \
+    printf 'server {listen 3000 ssl;listen [::]:3000 ssl;ssl_certificate /etc/ssl/certs/server.crt;ssl_certificate_key /etc/ssl/private/server.key;location / {root /usr/share/nginx/html;index index.html;}}' >/etc/nginx/conf.d/default.conf
 
 LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
       de.sdavids.docker.type="builder"

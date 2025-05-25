@@ -94,7 +94,7 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 === Go
 
 [#go-http]
-==== Go http
+==== http
 
 [,console]
 ----
@@ -109,7 +109,7 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:g
 link:go/http/README.adoc#usage[Go http]
 
 [#go-https]
-==== Go https
+==== https
 
 [,console]
 ----
@@ -147,8 +147,10 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:j
 
 link:js/nodejs/README.adoc#usage[js - nodejs]
 
+=== Rust
+
 [#rust-http]
-=== Rust http
+==== http
 
 [,console]
 ----
@@ -158,27 +160,32 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:r
 212.0K  /usr/local/bin/healthcheck
 ----
 
-==== Usage
+===== Usage
 
 link:rust/http/README.adoc#usage[Rust http]
 
 [#rust-https]
-=== Rust https
+==== https
 
 [,console]
 ----
 $ cd rust/https
+$ scripts/create_ca.sh
+$ scripts/copy_ca_root_cert.sh
+$ scripts/create_ca_based_cert.sh
 $ scripts/docker_build.sh -p linux/amd64 -t rust-https
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:rust-https sh -c 'du -kh /usr/local/bin/healthcheck'
 548.0K  /usr/local/bin/healthcheck
 ----
 
-==== Usage
+===== Usage
 
 link:rust/https/README.adoc#usage[Rust https]
 
+=== shell
+
 [#shell-nc]
-=== shell nc
+==== nc
 
 [NOTE]
 ====
@@ -193,7 +200,7 @@ $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:s
 4.0K    /usr/local/bin/healthcheck
 ----
 
-==== Usage
+===== Usage
 
 link:shell/nc/README.adoc#usage[shell nc]
 

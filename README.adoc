@@ -56,10 +56,10 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 
 |<<js-nodejs,JavaScript Node.js>>
 >|4.0K
-|the `node` binary would add 41.2M
+|the `node` binary would add 41.8M
 
 |<<rust-http,Rust http>>
->|212.0K
+>|208.0K
 |
 
 |<<rust-https,Rust https>>
@@ -130,7 +130,7 @@ link:go/https/README.adoc#usage[Go https]
 
 [NOTE]
 ====
-This health check is only useful in a Node.js Docker image, i.e., an image where the `node` binary already exists--the `node` binary would add 41.2M.
+This health check is only useful in a Node.js Docker image, i.e., an image where the `node` binary already exists--the `node` binary would add 41.8M.
 ====
 
 [,console]
@@ -140,7 +140,7 @@ $ scripts/docker_build.sh -p linux/amd64 -t js-nodejs
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /node/healthcheck.mjs'
 4.0K    /node/healthcheck.mjs
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /usr/bin/node'
-41.2M   /usr/bin/node
+41.8M   /usr/bin/node
 ----
 
 ===== Usage
@@ -157,7 +157,7 @@ link:js/nodejs/README.adoc#usage[js - nodejs]
 $ cd rust/http
 $ scripts/docker_build.sh -p linux/amd64 -t rust-http
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:rust-http sh -c 'du -kh /usr/local/bin/healthcheck'
-212.0K  /usr/local/bin/healthcheck
+208.0K  /usr/local/bin/healthcheck
 ----
 
 ===== Usage

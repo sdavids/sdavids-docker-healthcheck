@@ -5,6 +5,3 @@
 
 [*.rs]
 max_line_length = 100
-
-[*.toml]
-max_line_length = 100

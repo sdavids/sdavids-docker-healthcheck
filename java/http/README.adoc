@@ -50,7 +50,7 @@ If `HEALTHCHECK_URL` is not set `http://localhost:3000/-/health/liveness` will b
 
 [IMPORTANT]
 ====
-The health check calls the URL from within the container therefore `localhost` is the running Docker image and not the `localhost` of the Docker host.
+The health check calls the URL from within the container therefore `localhost` is the running Docker container and not the `localhost` of the Docker host.
 ====
 
 == Development

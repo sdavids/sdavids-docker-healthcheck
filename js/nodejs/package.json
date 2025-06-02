@@ -1,7 +1,7 @@
 {
   "name": "sdavids-docker-healthcheck",
   "description": "",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "Apache-2.0",
   "contributors": [
     "Sebastian Davids <sdavids@gmx.de>"
@@ -22,7 +22,7 @@
     "format:check": "scripts/format_check.sh",
     "lint": "scripts/lint.sh",
     "lint:fix": "scripts/lint_fix.sh",
-    "start": "NODE_ENV=production node src/server.mjs"
+    "start": "node src/server.mjs"
   },
   "devDependencies": {
     "@eslint/js": "9.28.0",
@@ -37,7 +37,7 @@
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": ">= 22.15"
+      "version": ">= 22.16"
     },
     "packageManager": {
       "name": "npm",

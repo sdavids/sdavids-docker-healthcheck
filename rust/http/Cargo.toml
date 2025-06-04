@@ -5,8 +5,9 @@
 
 [package]
 name = "sdavids-docker-healthcheck-rust-http"
-version = "1.0.0"
+version = "0.0.0"
 edition = "2024"
+# https://doc.rust-lang.org/stable/releases.html
 rust-version = "1.87.0"
 authors = ["Sebastian Davids <sdavids@gmx.de>"]
 description = "A Docker health check for an HTTP URL passed in via ENV"
@@ -30,5 +31,7 @@ opt-level = "s"
 strip = "symbols"
 
 [dependencies]
+# https://docs.rs/exitcode/latest/exitcode/
 exitcode = "1.1.2"
+# https://docs.rs/minreq/latest/minreq/
 minreq = { version = "2.13.4" }

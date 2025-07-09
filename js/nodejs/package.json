@@ -17,7 +17,7 @@
     "build": "scripts/build.sh",
     "clean": "scripts/clean.sh",
     "clean:node": "scripts/clean_node.sh",
-    "dependency:updates": "scripts/dependency_check_node.sh",
+    "dependency:updates": "scripts/dependency_check_npm.sh",
     "format": "scripts/format.sh",
     "format:check": "scripts/format_check.sh",
     "lint": "scripts/lint.sh",

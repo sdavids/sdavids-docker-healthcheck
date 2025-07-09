@@ -9,6 +9,6 @@ set -eu
 
 readonly base_dir="$PWD"
 
-js/nodejs/scripts/dependency_check_node.sh "${base_dir}/js/nodejs"
+js/nodejs/scripts/dependency_check_npm.sh "${base_dir}/js/nodejs"
 rust/http/scripts/dependency_check_rust.sh "${base_dir}/rust/http"
 rust/https/scripts/dependency_check_rust.sh "${base_dir}/rust/https"

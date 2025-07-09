@@ -25,6 +25,7 @@ linters:
     - dogsled
     - dupword
     - durationcheck
+    - embeddedstructfieldcheck
     - errchkjson
     - errname
     - errorlint
@@ -59,6 +60,7 @@ linters:
     - nilerr
     - nilnil
     - noctx
+    - noinlineerr
     - nolintlint
     - nosprintfhostport
     - paralleltest

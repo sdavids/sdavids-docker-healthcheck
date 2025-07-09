@@ -166,7 +166,7 @@ jobs:
         uses: golangci/golangci-lint-action@v8.0.0
         with:
           # https://github.com/golangci/golangci-lint/releases
-          version: v2.1.6
+          version: v2.2.1
           working-directory: go/http
       - if: steps.changes.outputs.go-http == 'true'
         name: Build go/http
@@ -191,7 +191,7 @@ jobs:
         uses: golangci/golangci-lint-action@v8.0.0
         with:
           # https://github.com/golangci/golangci-lint/releases
-          version: v2.1.6
+          version: v2.2.1
           working-directory: go/https
       - if: steps.changes.outputs.go-https == 'true'
         name: Build go/https

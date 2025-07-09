@@ -133,6 +133,11 @@ link:go/https/README.adoc#usage[Go https]
 [#java-http]
 ==== http
 
+[NOTE]
+====
+You need to link:java/http/README.adoc#docker-login[authenticate] with the _ghcr.io Container registry_ to build the image.
+====
+
 [,console]
 ----
 $ cd java/http

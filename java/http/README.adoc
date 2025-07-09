@@ -146,6 +146,47 @@ ENV HEALTHCHECK_URL="http://localhost:3000/-/health/liveness"
 
 link:Dockerfile[Dockerfile]: a simple HTTP server
 
+[[docker-login]]
+[IMPORTANT]
+====
+You need to https://docs.docker.com/reference/cli/docker/login/[authenticate] with the https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry[ghcr.io Container registry] to build the image.
+
+'''
+
+First, https://github.com/settings/tokens[generate a new classic token] with the `read:packages` scope.
+
+I suggest saving the token to a file on your file system:
+
+.~/.local/secrets/docker/gh-container-registry-token
+[,text]
+----
+your_token
+----
+
+Ensure that you do not have a newline at EOF:
+
+[,console]
+----
+$ perl -pi -e 'chomp if eof' ~/.local/secrets/docker/gh-container-registry-token
+----
+
+Ensure that the file is readable by your user only:
+
+[,console]
+----
+$ chmod 600 ~/.local/secrets/docker/gh-container-registry-token
+----
+
+Now log in:
+
+[,console]
+----
+$ cat ~/.local/secrets/docker/gh-container-registry-token | docker login ghcr.io --password-stdin -u your_gh_username
+----
+
+You can now keep or delete `~/.local/secrets/docker/gh-container-registry-token`—Docker will save the credential separately.
+====
+
 . link:scripts/docker_build.sh[Build] the image:
 +
 [,console]

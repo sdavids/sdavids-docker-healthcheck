@@ -60,11 +60,11 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 |the `node` binary would add 41.8M
 
 |<<rust-http,Rust http>>
->|208.0K
+>|204.0K
 |
 
 |<<rust-https,Rust https>>
->|548.0K
+>|544.0K
 |
 
 |<<java-http,Java http>>
@@ -80,7 +80,7 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 |
 
 |<<wget-alpine,wget alpine>>
->|8.7M
+>|9.4M
 |
 
 |<<wget-debian,wget debian>>
@@ -88,7 +88,7 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 |
 
 |<<curl-alpine,curl alpine>>
->|9.8M
+>|10.5M
 |
 
 |<<curl-debian,curl debian>>
@@ -162,7 +162,7 @@ $ scripts/docker_build.sh -p linux/amd64 -t js-nodejs
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /node/healthcheck.mjs'
 4.0K    /node/healthcheck.mjs
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /usr/bin/node'
-41.8M   /usr/bin/node
+41.9M   /usr/bin/node
 ----
 
 ===== Usage
@@ -179,7 +179,7 @@ link:js/nodejs/README.adoc#usage[js - nodejs]
 $ cd rust/http
 $ scripts/docker_build.sh -p linux/amd64 -t rust-http
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:rust-http sh -c 'du -kh /usr/local/bin/healthcheck'
-208.0K  /usr/local/bin/healthcheck
+204.0K  /usr/local/bin/healthcheck
 ----
 
 ===== Usage
@@ -215,7 +215,7 @@ $ scripts/copy_ca_root_cert.sh
 $ cd rust/https
 $ scripts/docker_build.sh -p linux/amd64 -t rust-https
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:rust-https sh -c 'du -kh /usr/local/bin/healthcheck'
-548.0K  /usr/local/bin/healthcheck
+544.0K  /usr/local/bin/healthcheck
 ----
 
 ===== Usage
@@ -251,22 +251,22 @@ link:shell/nc/README.adoc#usage[shell nc]
 
 [,console]
 ----
-$ docker run --platform=linux/amd64 --rm alpine:3.21.3 sh -c "apk --no-cache --quiet --no-progress add curl=8.12.1-r0 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
-248.0K  /usr/bin/curl
-628.0K  /usr/lib/libcurl.so.4
+$ docker run --platform=linux/amd64 --rm alpine:3.22.0 sh -c "apk --no-cache --quiet --no-progress add curl=8.14.1-r1 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
+252.0K  /usr/bin/curl
+672.0K  /usr/lib/libcurl.so.4
 104.0K  /usr/lib/libz.so.1
 648.0K  /lib/ld-musl-x86_64.so.1
-232.0K  /usr/lib/libcares.so.2
-140.0K  /usr/lib/libnghttp2.so.14
+236.0K  /usr/lib/libcares.so.2
+132.0K  /usr/lib/libnghttp2.so.14
 196.0K  /usr/lib/libidn2.so.0
 76.0K   /usr/lib/libpsl.so.5
-780.0K  /usr/lib/libssl.so.3
-4.3M    /usr/lib/libcrypto.so.3
-700.0K  /usr/lib/libzstd.so.1
+820.0K  /usr/lib/libssl.so.3
+4.7M    /usr/lib/libcrypto.so.3
+704.0K  /usr/lib/libzstd.so.1
 56.0K   /usr/lib/libbrotlidec.so.1
-1.6M    /usr/lib/libunistring.so.5
+1.8M    /usr/lib/libunistring.so.5
 140.0K  /usr/lib/libbrotlicommon.so.1
-9.8M    total
+10.5M   total
 ----
 
 [#curl-debian]
@@ -317,16 +317,16 @@ $ docker run --platform=linux/amd64 --rm debian:12.9-slim sh -c "apt-get -qq upd
 
 [,console]
 ----
-$ docker run --platform=linux/amd64 --rm alpine:3.21.3 sh -c "apk --no-cache --quiet --no-progress add wget=1.25.0-r0 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
+$ docker run --platform=linux/amd64 --rm alpine:3.22.0 sh -c "apk --no-cache --quiet --no-progress add wget=1.25.0-r1 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
 404.0K  /usr/bin/wget
 696.0K  /usr/lib/libpcre2-8.so.0
 196.0K  /usr/lib/libidn2.so.0
-780.0K  /usr/lib/libssl.so.3
-4.3M    /usr/lib/libcrypto.so.3
+820.0K  /usr/lib/libssl.so.3
+4.7M    /usr/lib/libcrypto.so.3
 104.0K  /usr/lib/libz.so.1
 648.0K  /lib/ld-musl-x86_64.so.1
-1.6M    /usr/lib/libunistring.so.5
-8.7M    total
+1.8M    /usr/lib/libunistring.so.5
+9.4M    total
 ----
 
 [#wget-debian]

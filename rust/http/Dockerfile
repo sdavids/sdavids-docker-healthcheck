@@ -9,9 +9,9 @@
 ### healthcheck builder ###
 
 # https://hub.docker.com/_/rust/
-FROM rust:1.88.0-alpine3.21 AS healthcheck
+FROM rust:1.88.0-alpine3.22 AS healthcheck
 
-RUN apk add --no-cache upx=4.2.4-r0
+RUN apk add --no-cache upx=5.0.0-r0
 
 # https://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-reads
 ENV CARGO_INCREMENTAL=0
@@ -38,7 +38,7 @@ LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
 ### HTTP server ###
 
 # https://hub.docker.com/_/nginx/
-FROM nginx:1.28.0-alpine3.21-slim AS http_server
+FROM nginx:1.29.0-alpine3.22-slim AS http_server
 
 RUN mkdir -p /usr/share/nginx/html/-/health && \
     touch /usr/share/nginx/html/-/health/liveness && \

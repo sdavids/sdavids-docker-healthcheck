@@ -84,7 +84,7 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 |
 
 |<<wget-debian,wget debian>>
->|9.7M
+>|9.6M
 |
 
 |<<curl-alpine,curl alpine>>
@@ -274,7 +274,7 @@ $ docker run --platform=linux/amd64 --rm alpine:3.22.0 sh -c "apk --no-cache --q
 
 [,console]
 ----
-$ docker run --platform=linux/amd64 --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq install -y curl=7.88.1-10+deb12u8 >/dev/null 2>&1 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
+$ docker run --platform=linux/amd64 --rm debian:12.11-slim sh -c "apt-get -qq update && apt-get -qq install -y curl=7.88.1-10+deb12u12 >/dev/null 2>&1 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
 276K    /usr/bin/curl
 696K    /lib/x86_64-linux-gnu/libcurl.so.4
 120K    /lib/x86_64-linux-gnu/libz.so.1
@@ -334,8 +334,8 @@ $ docker run --platform=linux/amd64 --rm alpine:3.22.0 sh -c "apk --no-cache --q
 
 [,console]
 ----
-$ docker run --platform=linux/amd64 --rm debian:12.9-slim sh -c "apt-get -qq update && apt-get -qq install -y wget=1.21.3-1+b2 >/dev/null 2>&1 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
-528K    /usr/bin/wget
+$ docker run --platform=linux/amd64 --rm debian:12.11-slim sh -c "apt-get -qq update && apt-get -qq install -y wget=1.21.3-1+deb12u1 >/dev/null 2>&1 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
+460K    /usr/bin/wget
 616K    /lib/x86_64-linux-gnu/libpcre2-8.so.0
 36K     /lib/x86_64-linux-gnu/libuuid.so.1
 196K    /lib/x86_64-linux-gnu/libidn2.so.0
@@ -350,7 +350,7 @@ $ docker run --platform=linux/amd64 --rm debian:12.9-slim sh -c "apt-get -qq upd
 288K    /lib/x86_64-linux-gnu/libhogweed.so.6
 520K    /lib/x86_64-linux-gnu/libgmp.so.10
 44K     /lib/x86_64-linux-gnu/libffi.so.8
-9.7M    total
+9.6M    total
 ----
 
 == Development

@@ -204,7 +204,7 @@ jobs:
       - if: steps.changes.outputs.rust-http == 'true'
         name: Cache rust/http Rust files
         # https://github.com/Swatinem/rust-cache/releases
-        uses: Swatinem/rust-cache@v2.7.8
+        uses: Swatinem/rust-cache@v2.8.0
         with:
           shared-key: rust-http
           workspaces: rust/http
@@ -234,7 +234,7 @@ jobs:
       - if: steps.changes.outputs.rust-https == 'true'
         name: Cache rust/https Rust files
         # https://github.com/Swatinem/rust-cache/releases
-        uses: Swatinem/rust-cache@v2.7.8
+        uses: Swatinem/rust-cache@v2.8.0
         with:
           shared-key: rust-https
           workspaces: rust/https

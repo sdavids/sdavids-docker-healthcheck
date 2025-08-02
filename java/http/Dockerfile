@@ -9,7 +9,7 @@
 ### healthcheck builder ###
 
 # https://github.com/graalvm/container/pkgs/container/native-image-community
-FROM ghcr.io/graalvm/native-image-community:24.0.1-muslib-ol9-20250415 AS healthcheck
+FROM ghcr.io/graalvm/native-image-community:24.0.2-muslib-ol9-20250715 AS healthcheck
 
 RUN microdnf install --assumeyes --nodocs "xz-5.2.5-8.el9_0.$(arch)" && microdnf clean all
 

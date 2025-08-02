@@ -14,7 +14,7 @@ FROM ghcr.io/graalvm/native-image-community:24.0.2-muslib-ol9-20250715 AS health
 RUN microdnf install --assumeyes --nodocs "xz-5.2.5-8.el9_0.$(arch)" && microdnf clean all
 
 # https://github.com/upx/upx/releases
-RUN UPX_VERSION=5.0.1 && \
+RUN UPX_VERSION=5.0.2 && \
     if [ "$(arch)" = 'x86_64' ]; then echo 'amd64' >/tmp/arch; else echo 'arm64' >/tmp/arch; fi && \
     ARCH=$(cat /tmp/arch) && \
     rm /tmp/arch && \

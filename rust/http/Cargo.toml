@@ -34,4 +34,4 @@ strip = "symbols"
 # https://docs.rs/exitcode/latest/exitcode/
 exitcode = "1.1.2"
 # https://docs.rs/minreq/latest/minreq/
-minreq = { version = "2.14.0" }
+minreq = { version = "2.14.1" }

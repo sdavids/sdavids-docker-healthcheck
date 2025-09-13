@@ -60,11 +60,11 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 |the `node` binary would add 41.8M
 
 |<<rust-http,Rust http>>
->|204.0K
+>|208.0K
 |
 
 |<<rust-https,Rust https>>
->|544.0K
+>|548.0K
 |
 
 |<<java-http,Java http>>
@@ -184,7 +184,7 @@ link:js/nodejs/README.adoc#usage[js - nodejs]
 $ cd rust/http
 $ scripts/docker_build.sh -p linux/amd64 -t rust-http
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:rust-http sh -c 'du -kh /usr/local/bin/healthcheck'
-204.0K  /usr/local/bin/healthcheck
+208.0K  /usr/local/bin/healthcheck
 ----
 
 ===== Usage
@@ -220,7 +220,7 @@ $ scripts/copy_ca_root_cert.sh
 $ cd rust/https
 $ scripts/docker_build.sh -p linux/amd64 -t rust-https
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:rust-https sh -c 'du -kh /usr/local/bin/healthcheck'
-544.0K  /usr/local/bin/healthcheck
+548.0K  /usr/local/bin/healthcheck
 ----
 
 ===== Usage

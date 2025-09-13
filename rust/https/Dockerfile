@@ -9,9 +9,9 @@
 ### healthcheck builder ###
 
 # https://hub.docker.com/_/rust/
-FROM rust:1.88.0-alpine3.22 AS healthcheck
+FROM rust:1.89.0-alpine3.22 AS healthcheck
 
-RUN apk add --no-cache musl-dev=1.2.5-r10 upx=5.0.0-r0
+RUN apk add --no-cache musl-dev=1.2.5-r10 upx=5.0.2-r0
 
 # https://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-reads
 ENV CARGO_INCREMENTAL=0

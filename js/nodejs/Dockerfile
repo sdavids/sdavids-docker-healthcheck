@@ -44,7 +44,7 @@ LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
 ### Harden ###
 
 # https://hub.docker.com/_/alpine
-FROM alpine:3.22.0 AS hardened
+FROM alpine:3.22.1 AS hardened
 
 # https://github.com/hadolint/hadolint/wiki/DL4006
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]

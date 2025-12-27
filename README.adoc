@@ -68,7 +68,7 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 |
 
 |<<java-http,Java http>>
->|4.3M
+>|3.4M
 |
 
 |<<go-http,Go http>>
@@ -143,7 +143,7 @@ You need to link:java/http/README.adoc#docker-login[authenticate] with the _ghcr
 $ cd java/http
 $ scripts/docker_build.sh -p linux/amd64 -t java-http
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:java-http sh -c 'du -kh /usr/local/bin/healthcheck'
-4.3M    /usr/local/bin/healthcheck
+3.4M    /usr/local/bin/healthcheck
 ----
 
 ===== Usage

@@ -115,8 +115,8 @@ jobs:
         with:
           # https://github.com/graalvm/graalvm-ce-builds/releases
           distribution: graalvm-community
-          version: 24.0.1
-          java-version: 24.0.1
+          version: 25.0.1
+          java-version: 25.0.1
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - if: steps.changes.outputs.java-http == 'true'
         name: Check java/http formatting

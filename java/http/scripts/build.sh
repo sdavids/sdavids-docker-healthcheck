@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: © 2024 Sebastian Davids <sdavids@gmx.de>
 # SPDX-License-Identifier: Apache-2.0
 
-# javac (JDK 21+) needs to be in $PATH
+# javac (JDK 25+) needs to be in $PATH
 
 set -eu
 
@@ -16,4 +16,4 @@ fi
 
 readonly build_dir="${base_dir}/target/classes"
 
-javac --release 21 -d "${build_dir}" "${base_dir}/src/HealthCheck.java"
+javac --release 25 -d "${build_dir}" "${base_dir}/src/HealthCheck.java"

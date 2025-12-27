@@ -29,15 +29,16 @@ fi
 
 mkdir -p "${build_native_dir}"
 
+# https://www.graalvm.org/latest/reference-manual/native-image/overview/Options/#build-options
 # https://www.graalvm.org/latest/reference-manual/native-image/overview/BuildOutput/#recommendations
-# -0b for smaller size
+# -0s for smaller size
 # --gc=epsilon because we are a short-lived process
 native-image \
   -march=native \
-  -Ob \
+  -Os \
   --gc=epsilon \
+  --future-defaults=all \
   --initialize-at-build-time="${class_name}" \
-  --install-exit-handlers \
   --enable-http \
   -cp "${build_classes_dir}" \
   -o "${build_native_dir}/${bin_name}" \

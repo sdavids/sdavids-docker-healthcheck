@@ -164,7 +164,7 @@ jobs:
       - if: steps.changes.outputs.go-http == 'true'
         name: Lint go/http files
         # https://github.com/golangci/golangci-lint-action/releases
-        uses: golangci/golangci-lint-action@v8.0.0
+        uses: golangci/golangci-lint-action@v9.2.0
         with:
           # https://github.com/golangci/golangci-lint/releases
           version: v2.2.1
@@ -189,7 +189,7 @@ jobs:
       - if: steps.changes.outputs.go-https == 'true'
         name: Lint go/https files
         # https://github.com/golangci/golangci-lint-action/releases
-        uses: golangci/golangci-lint-action@v8.0.0
+        uses: golangci/golangci-lint-action@v9.2.0
         with:
           # https://github.com/golangci/golangci-lint/releases
           version: v2.2.1

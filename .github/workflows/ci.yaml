@@ -105,7 +105,7 @@ jobs:
       - if: steps.changes.outputs.java-http-Dockerfile == 'true'
         name: Lint java/http Dockerfile
         # https://github.com/hadolint/hadolint-action/releases
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.3.0
         with:
           dockerfile: java/http/Dockerfile
       - if: steps.changes.outputs.java-http == 'true'
@@ -130,7 +130,7 @@ jobs:
       - if: steps.changes.outputs.js-nodejs-Dockerfile == 'true'
         name: Lint js/nodejs Dockerfile
         # https://github.com/hadolint/hadolint-action/releases
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.3.0
         with:
           dockerfile: js/nodejs/Dockerfile
       - if: steps.changes.outputs.js-nodejs == 'true'
@@ -152,7 +152,7 @@ jobs:
       - if: steps.changes.outputs.go-http-Dockerfile == 'true'
         name: Lint go/http/Dockerfile
         # https://github.com/hadolint/hadolint-action/releases
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.3.0
         with:
           dockerfile: go/http/Dockerfile
       - if: steps.changes.outputs.go-http == 'true'
@@ -177,7 +177,7 @@ jobs:
       - if: steps.changes.outputs.go-https-Dockerfile == 'true'
         name: Lint go/https/Dockerfile
         # https://github.com/hadolint/hadolint-action/releases
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.3.0
         with:
           dockerfile: go/https/Dockerfile
       - if: steps.changes.outputs.go-https == 'true'
@@ -202,7 +202,7 @@ jobs:
       - if: steps.changes.outputs.rust-http-Dockerfile == 'true'
         name: Lint rust/http Dockerfile
         # https://github.com/hadolint/hadolint-action/releases
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.3.0
         with:
           dockerfile: rust/http/Dockerfile
       - if: steps.changes.outputs.rust-http == 'true'
@@ -232,7 +232,7 @@ jobs:
       - if: steps.changes.outputs.rust-https-Dockerfile == 'true'
         name: Lint rust/https Dockerfile
         # https://github.com/hadolint/hadolint-action/releases
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.3.0
         with:
           dockerfile: rust/https/Dockerfile
       - if: steps.changes.outputs.rust-https == 'true'

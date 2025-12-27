@@ -11,6 +11,7 @@
 # https://github.com/graalvm/container/pkgs/container/native-image-community
 FROM ghcr.io/graalvm/native-image-community:24.0.2-muslib-ol9-20250715 AS healthcheck
 
+# hadolint ignore=DL3041
 RUN microdnf install --assumeyes --nodocs "xz-5.2.5-8.el9_0.$(arch)" && microdnf clean all
 
 # https://github.com/upx/upx/releases

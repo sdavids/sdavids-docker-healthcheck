@@ -57,7 +57,7 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 
 |<<js-nodejs,JavaScript Node.js>>
 >|4.0K
-|the `node` binary would add 41.8M
+|the `node` binary would add 41.6M
 
 |<<rust-http,Rust http>>
 >|208.0K
@@ -157,7 +157,7 @@ link:java/http/README.adoc#usage[Java http]
 
 [NOTE]
 ====
-This health check is only useful in a Node.js Docker image, i.e., an image where the `node` binary already exists--the `node` binary would add 41.8M.
+This health check is only useful in a Node.js Docker image, i.e., an image where the `node` binary already exists--the `node` binary would add 41.6M.
 ====
 
 [,console]
@@ -167,7 +167,7 @@ $ scripts/docker_build.sh -p linux/amd64 -t js-nodejs
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /node/healthcheck.mjs'
 4.0K    /node/healthcheck.mjs
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:js-nodejs sh -c 'du -kh /usr/bin/node'
-41.9M   /usr/bin/node
+41.6M   /usr/bin/node
 ----
 
 ===== Usage

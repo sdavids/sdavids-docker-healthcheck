@@ -80,7 +80,7 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 |
 
 |<<wget-alpine,wget alpine>>
->|9.4M
+>|9.5M
 |
 
 |<<wget-debian,wget debian>>
@@ -323,16 +323,16 @@ $ docker run --platform=linux/amd64 --rm debian:12.12-slim sh -c "apt-get -qq up
 
 [,console]
 ----
-$ docker run --platform=linux/amd64 --rm alpine:3.22.1 sh -c "apk --no-cache --quiet --no-progress add wget=1.25.0-r1 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
+$ docker run --platform=linux/amd64 --rm alpine:3.23.2 sh -c "apk --no-cache --quiet --no-progress add wget=1.25.0-r2 && ldd /usr/bin/wget | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/wget"
 404.0K  /usr/bin/wget
-696.0K  /usr/lib/libpcre2-8.so.0
+764.0K  /usr/lib/libpcre2-8.so.0
 196.0K  /usr/lib/libidn2.so.0
 820.0K  /usr/lib/libssl.so.3
 4.8M    /usr/lib/libcrypto.so.3
 104.0K  /usr/lib/libz.so.1
-648.0K  /lib/ld-musl-x86_64.so.1
+652.0K  /lib/ld-musl-x86_64.so.1
 1.8M    /usr/lib/libunistring.so.5
-9.4M    total
+9.5M    total
 ----
 
 [#wget-debian]

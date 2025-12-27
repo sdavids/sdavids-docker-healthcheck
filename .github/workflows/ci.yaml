@@ -127,6 +127,12 @@ jobs:
         name: Lint java/http files
         working-directory: java/http
         run: scripts/lint.sh
+      - if: steps.changes.outputs.java-http == 'true'
+        name: Build java/http
+        working-directory: java/http
+        run: |
+          scripts/build.sh
+          scripts/build_native.sh
       # --- js/nodejs ----------------------------------------------------------
       - if: steps.changes.outputs.js-nodejs-Dockerfile == 'true'
         name: Lint js/nodejs Dockerfile

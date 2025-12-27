@@ -8,4 +8,4 @@ module sdavids.de/sdavids-docker-healthcheck-go-https
 go 1.25
 
 // https://go.dev/doc/devel/release
-toolchain go1.25.1
+toolchain go1.25.5

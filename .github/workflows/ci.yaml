@@ -118,10 +118,11 @@ jobs:
           version: 25.0.1
           java-version: 25.0.1
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - if: steps.changes.outputs.java-http == 'true'
-        name: Check java/http formatting
-        working-directory: java/http
-        run: scripts/format_check.sh
+      # https://github.com/google/google-java-format/issues/1216
+      #      - if: steps.changes.outputs.java-http == 'true'
+      #        name: Check java/http formatting
+      #        working-directory: java/http
+      #        run: scripts/format_check.sh
       - if: steps.changes.outputs.java-http == 'true'
         name: Lint java/http files
         working-directory: java/http

@@ -2,6 +2,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 [toolchain]
-channel = "stable-2025-08-07"
+channel = "stable-2025-12-11"
 components = ["clippy", "rustfmt"]
 profile = "minimal"

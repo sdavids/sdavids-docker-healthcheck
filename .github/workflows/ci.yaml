@@ -158,7 +158,7 @@ jobs:
       - if: steps.changes.outputs.go-http == 'true'
         name: Install Go for go/http
         # https://github.com/actions/setup-go/releases
-        uses: actions/setup-go@v5.5.0
+        uses: actions/setup-go@v5.6.0
         with:
           go-version-file: go/http/go.mod
       - if: steps.changes.outputs.go-http == 'true'
@@ -183,7 +183,7 @@ jobs:
       - if: steps.changes.outputs.go-https == 'true'
         name: Install Go for go/https
         # https://github.com/actions/setup-go/releases
-        uses: actions/setup-go@v5.5.0
+        uses: actions/setup-go@v5.6.0
         with:
           go-version-file: go/https/go.mod
       - if: steps.changes.outputs.go-https == 'true'

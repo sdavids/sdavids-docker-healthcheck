@@ -111,7 +111,7 @@ jobs:
       - if: steps.changes.outputs.java-http == 'true'
         name: Setup Java
         # https://github.com/graalvm/setup-graalvm/releases
-        uses: graalvm/setup-graalvm@v1.3.4
+        uses: graalvm/setup-graalvm@v1.4.4
         with:
           # https://github.com/graalvm/graalvm-ce-builds/releases
           distribution: graalvm-community

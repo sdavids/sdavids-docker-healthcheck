@@ -92,7 +92,7 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 |
 
 |<<curl-debian,curl debian>>
->|19.0M
+>|22.0M
 |
 |===
 
@@ -280,40 +280,40 @@ $ docker run --platform=linux/amd64 --rm alpine:3.23.2 sh -c "apk --no-cache --q
 
 [,console]
 ----
-$ docker run --platform=linux/amd64 --rm debian:12.12-slim sh -c "apt-get -qq update && apt-get -qq install -y curl=7.88.1-10+deb12u14 >/dev/null 2>&1 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
-276K    /usr/bin/curl
-696K    /lib/x86_64-linux-gnu/libcurl.so.4
-120K    /lib/x86_64-linux-gnu/libz.so.1
-1.9M    /lib/x86_64-linux-gnu/libc.so.6
-188K    /lib/x86_64-linux-gnu/libnghttp2.so.14
-196K    /lib/x86_64-linux-gnu/libidn2.so.0
-120K    /lib/x86_64-linux-gnu/librtmp.so.1
-256K    /lib/x86_64-linux-gnu/libssh2.so.1
-76K     /lib/x86_64-linux-gnu/libpsl.so.5
-676K    /lib/x86_64-linux-gnu/libssl.so.3
-4.6M    /lib/x86_64-linux-gnu/libcrypto.so.3
-332K    /lib/x86_64-linux-gnu/libgssapi_krb5.so.2
-372K    /lib/x86_64-linux-gnu/libldap-2.5.so.0
-64K     /lib/x86_64-linux-gnu/liblber-2.5.so.0
-748K    /lib/x86_64-linux-gnu/libzstd.so.1
-48K     /lib/x86_64-linux-gnu/libbrotlidec.so.1
-1.8M    /lib/x86_64-linux-gnu/libunistring.so.2
-2.1M    /lib/x86_64-linux-gnu/libgnutls.so.30
-288K    /lib/x86_64-linux-gnu/libhogweed.so.6
-312K    /lib/x86_64-linux-gnu/libnettle.so.8
-520K    /lib/x86_64-linux-gnu/libgmp.so.10
-868K    /lib/x86_64-linux-gnu/libkrb5.so.3
-180K    /lib/x86_64-linux-gnu/libk5crypto.so.3
-20K     /lib/x86_64-linux-gnu/libcom_err.so.2
-52K     /lib/x86_64-linux-gnu/libkrb5support.so.0
-112K    /lib/x86_64-linux-gnu/libsasl2.so.2
-136K    /lib/x86_64-linux-gnu/libbrotlicommon.so.1
-1.3M    /lib/x86_64-linux-gnu/libp11-kit.so.0
-84K     /lib/x86_64-linux-gnu/libtasn1.so.6
-24K     /lib/x86_64-linux-gnu/libkeyutils.so.1
-60K     /lib/x86_64-linux-gnu/libresolv.so.2
-44K     /lib/x86_64-linux-gnu/libffi.so.8
-19M     total
+$ docker run --platform=linux/amd64 --rm debian:13.2-slim sh -c "apt-get -qq update && apt-get -qq install -y curl=8.14.1-2+deb13u2 >/dev/null 2>&1 && ldd /usr/bin/curl | awk '{ print $ 3}' | xargs du -ckshL /usr/bin/curl"
+316K   /usr/bin/curl
+964K   /lib/x86_64-linux-gnu/libcurl.so.4
+124K   /lib/x86_64-linux-gnu/libz.so.1
+2.0M   /lib/x86_64-linux-gnu/libc.so.6
+172K   /lib/x86_64-linux-gnu/libnghttp3.so.9
+196K   /lib/x86_64-linux-gnu/libnghttp2.so.14
+200K   /lib/x86_64-linux-gnu/libidn2.so.0
+120K   /lib/x86_64-linux-gnu/librtmp.so.1
+288K   /lib/x86_64-linux-gnu/libssh2.so.1
+76K    /lib/x86_64-linux-gnu/libpsl.so.5
+1.1M   /lib/x86_64-linux-gnu/libssl.so.3
+6.3M   /lib/x86_64-linux-gnu/libcrypto.so.3
+340K   /lib/x86_64-linux-gnu/libgssapi_krb5.so.2
+392K   /lib/x86_64-linux-gnu/libldap.so.2
+64K    /lib/x86_64-linux-gnu/liblber.so.2
+808K   /lib/x86_64-linux-gnu/libzstd.so.1
+52K    /lib/x86_64-linux-gnu/libbrotlidec.so.1
+2.0M   /lib/x86_64-linux-gnu/libunistring.so.5
+2.2M   /lib/x86_64-linux-gnu/libgnutls.so.30
+300K   /lib/x86_64-linux-gnu/libhogweed.so.6
+340K   /lib/x86_64-linux-gnu/libnettle.so.8
+556K   /lib/x86_64-linux-gnu/libgmp.so.10
+864K   /lib/x86_64-linux-gnu/libkrb5.so.3
+184K   /lib/x86_64-linux-gnu/libk5crypto.so.3
+20K    /lib/x86_64-linux-gnu/libcom_err.so.2
+52K    /lib/x86_64-linux-gnu/libkrb5support.so.0
+108K   /lib/x86_64-linux-gnu/libsasl2.so.2
+140K   /lib/x86_64-linux-gnu/libbrotlicommon.so.1
+88K    /lib/x86_64-linux-gnu/libtasn1.so.6
+24K    /lib/x86_64-linux-gnu/libkeyutils.so.1
+64K    /lib/x86_64-linux-gnu/libresolv.so.2
+48K    /lib/x86_64-linux-gnu/libffi.so.8
+22M    total
 ----
 
 === wget

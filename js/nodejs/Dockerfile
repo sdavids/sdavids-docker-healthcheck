@@ -9,7 +9,7 @@
 ### Node ###
 
 # https://hub.docker.com/_/node
-FROM node:24.12.0-alpine3.23 AS node
+FROM node:24.13.1-alpine3.23 AS node
 
 RUN apk --no-cache add upx=5.0.2-r0 && \
     upx /usr/local/bin/node
@@ -20,7 +20,7 @@ LABEL de.sdavids.docker.group="sdavids-docker-healthcheck" \
 ### Builder ###
 
 # https://hub.docker.com/_/node
-FROM node:24.12.0-alpine3.23 AS builder
+FROM node:24.13.1-alpine3.23 AS builder
 
 WORKDIR /node
 

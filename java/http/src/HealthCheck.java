@@ -6,7 +6,8 @@ import static java.util.Objects.requireNonNullElse;
 
 void main() {
   var u =
-    requireNonNullElse(System.getenv("HEALTHCHECK_URL"), "http://localhost:3000/-/health/liveness");
+      requireNonNullElse(
+          System.getenv("HEALTHCHECK_URL"), "http://localhost:3000/-/health/liveness");
 
   URL url = null;
   try {

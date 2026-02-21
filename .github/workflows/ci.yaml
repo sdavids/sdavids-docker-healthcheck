@@ -115,8 +115,8 @@ jobs:
         with:
           # https://github.com/graalvm/graalvm-ce-builds/releases
           distribution: graalvm-community
-          version: 25.0.1
-          java-version: 25.0.1
+          version: 25.0.2
+          java-version: 25.0.2
           github-token: ${{ secrets.GITHUB_TOKEN }}
       # https://github.com/google/google-java-format/issues/1216
       #      - if: steps.changes.outputs.java-http == 'true'

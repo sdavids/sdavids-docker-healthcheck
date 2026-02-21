@@ -9,7 +9,7 @@
 ### healthcheck builder ###
 
 # https://hub.docker.com/_/rust/
-FROM rust:1.92.0-alpine3.23 AS healthcheck
+FROM rust:1.93.1-alpine3.23 AS healthcheck
 
 RUN apk add --no-cache musl-dev=1.2.5-r21 upx=5.0.2-r0
 

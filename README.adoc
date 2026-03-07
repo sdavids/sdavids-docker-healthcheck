@@ -72,11 +72,11 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 |
 
 |<<go-http,Go http>>
->|5.8M
+>|5.9M
 |
 
 |<<go-https,Go https>>
->|5.8M
+>|5.9M
 |
 
 |<<wget-alpine,wget alpine>>
@@ -106,7 +106,7 @@ link:shell/nc/README.adoc[shell nc]:: a nc-based Docker health check for a daemo
 $ cd go/http
 $ scripts/docker_build.sh -p linux/amd64 -t go-http
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:go-http sh -c 'du -kh /usr/local/bin/healthcheck'
-5.8M    /usr/local/bin/healthcheck
+5.9M    /usr/local/bin/healthcheck
 ----
 
 ===== Usage
@@ -121,7 +121,7 @@ link:go/http/README.adoc#usage[Go http]
 $ cd go/https
 $ scripts/docker_build.sh -p linux/amd64 -t go-https
 $ docker run --platform=linux/amd64 --rm de.sdavids/sdavids-docker-healthcheck:go-https sh -c 'du -kh /usr/local/bin/healthcheck'
-5.8M    /usr/local/bin/healthcheck
+5.9M    /usr/local/bin/healthcheck
 ----
 
 ===== Usage

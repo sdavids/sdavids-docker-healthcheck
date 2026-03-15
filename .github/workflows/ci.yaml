@@ -173,7 +173,7 @@ jobs:
         uses: golangci/golangci-lint-action@v9.2.0
         with:
           # https://github.com/golangci/golangci-lint/releases
-          version: v2.11.1
+          version: v2.11.3
           working-directory: go/http
       - if: steps.changes.outputs.go-http == 'true'
         name: Build go/http
@@ -198,7 +198,7 @@ jobs:
         uses: golangci/golangci-lint-action@v9.2.0
         with:
           # https://github.com/golangci/golangci-lint/releases
-          version: v2.11.1
+          version: v2.11.3
           working-directory: go/https
       - if: steps.changes.outputs.go-https == 'true'
         name: Build go/https
@@ -218,7 +218,7 @@ jobs:
       - if: steps.changes.outputs.rust-http == 'true'
         name: Cache rust/http Rust files
         # https://github.com/Swatinem/rust-cache/releases
-        uses: Swatinem/rust-cache@v2.8.2
+        uses: Swatinem/rust-cache@v2.9.1
         with:
           shared-key: rust-http
           workspaces: rust/http
@@ -248,7 +248,7 @@ jobs:
       - if: steps.changes.outputs.rust-https == 'true'
         name: Cache rust/https Rust files
         # https://github.com/Swatinem/rust-cache/releases
-        uses: Swatinem/rust-cache@v2.8.2
+        uses: Swatinem/rust-cache@v2.9.1
         with:
           shared-key: rust-https
           workspaces: rust/https

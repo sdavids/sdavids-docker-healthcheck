@@ -19,6 +19,12 @@ readonly dir="${base_dir}/dist"
 
 rm -rf "${dir}"
 
+if command -v fnm >/dev/null 2>&1; then
+  fnm use
+elif command -v nvm >/dev/null 2>&1; then
+  nvm use
+fi
+
 if [ ! -d 'node_modules' ]; then
   npm ci --silent --ignore-scripts=true --fund=false
 fi
